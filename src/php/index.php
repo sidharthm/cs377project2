@@ -14,7 +14,7 @@
 
             </form>
 	<br />
-	<a href= "register.php">Register</a>
+	<a href= "register.php">Register</a> | <a href= "home.php">Home</a> (this is a cheat)
 </div>
  </body>
 </html>
