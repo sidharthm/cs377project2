@@ -13,6 +13,8 @@
                 <input type="submit" class="button" value="GO" id="submit"/>
 
             </form>
+	<br />
+	<a href= "register.php">Register</a>
 </div>
  </body>
 </html>
