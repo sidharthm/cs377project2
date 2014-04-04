@@ -19,11 +19,18 @@ app.config.from_envvar('FLASKR_SETTINGS',silent=True);
 def hello_world():
     return 'Hello World!'
 
-@app.route('/registration')
+@app.route('/registration', methods=['GET','POST'])
 def registration():
-    return render_template('registration.html')
+    if session.get('logged_in'):
+        return 'ALREADY LOGGED IN!'
+    if request.method == 'POST':
+        db=connect_db();
+        db.execute('select * from users where username=\'?\'',request.form['username'])
+        return 'Process registration'
+    else:
+        return render_template('registration.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET','POST'])
 def login():
     error = None
     if request.method == 'POST':
