@@ -48,9 +48,18 @@ def registration():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-    error = None
+    if session.get('logged_in'):
+        return 'ALREADY LOGGED IN!'
     if request.method == 'POST':
-        return 'Verify'
+        error = None
+        init_db();
+        db=connect_db();
+        cur=db.execute('select * from users where username=? and password=?',[request.form['username'],request.form['password']])
+        entries = cur.fetchall()
+        if len(entries) is 0:
+            return 'Invalid'
+        else:
+            return 'Logged in'
     else:
         return render_template('login.html')
 
