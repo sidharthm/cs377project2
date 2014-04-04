@@ -21,7 +21,20 @@ def hello_world():
 
 @app.route('/registration')
 def registration():
-    return 'Registration'
+    return render_template('registration.html')
+
+@app.route('/login')
+def login():
+    error = None
+    if request.method == 'POST':
+        return 'Verify'
+    else:
+        return 'Login'
+
+@app.route('/logout')
+def logout():
+    session.pop('logged_in',None)
+    return 'Logged out'
 
 def connect_db():
     rv = sqlite3.connect(app.config['DATABASE'])
