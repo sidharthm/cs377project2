@@ -40,8 +40,9 @@ def registration():
         entries = cur.fetchall()
         if len(entries) is 0:
             db.execute('insert into users (username,password) values(?,?)',[request.form['username'], request.form['password']])
-
-       return pprint.pformat(entries)
+            return pprint.pformat(entries)
+        else:
+            return 'Username taken'
     else:
         return render_template('registration.html')
 
@@ -51,7 +52,7 @@ def login():
     if request.method == 'POST':
         return 'Verify'
     else:
-        return 'Login'
+        return render_template('login.html')
 
 @app.route('/logout')
 def logout():
