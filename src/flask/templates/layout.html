@@ -2,10 +2,11 @@
 <title>Note-It</title>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.css') }}">
 <div class="header">
-  <h1>Note-It</h1>
+  <a href= "{{ url_for('welcome_page') }}"><h1>Note-It</h1></a>
   <div class="main">
   {% if not session.logged_in %}
-    <a href="{{ url_for('login') }}">log in</a>
+    <a href="{{ url_for('login') }}">Log In</a> | <a href="{{ url_for('registration') }}">Register</a>
+	
   {% else %}
     <a href="{{ url_for('logout') }}">log out</a>
   {% endif %}
