@@ -1,11 +1,8 @@
-<html>
-<head>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block body %}
 <form method='post' action='/'>
 <input type='text' name='username'/>
 <input type='password' name='password'/>
 <input type='submit' value='Login'/>
 </form>
-</body>
-</html>
+{% endblock %}
