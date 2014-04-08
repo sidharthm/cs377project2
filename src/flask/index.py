@@ -24,10 +24,9 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
-
 @app.route('/')
-def hello_world():
-    return 'Hello World!'
+def welcome_page():
+    return render_template('index.html')
 
 @app.route('/registration', methods=['GET','POST'])
 def registration():
@@ -52,7 +51,7 @@ def login():
         return 'ALREADY LOGGED IN!'
     if request.method == 'POST':
         error = None
-        init_db();
+        #init_db();
         db=connect_db();
         cur=db.execute('select * from users where username=? and password=?',[request.form['username'],request.form['password']])
         entries = cur.fetchall()
