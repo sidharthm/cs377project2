@@ -1,8 +1,9 @@
 <!doctype html>
 <title>Note-It</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.css') }}">
-<div class="header">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.css') }}">
+<div class="page-header">
   <a href= "{{ url_for('welcome_page') }}"><h1>Note-It</h1></a>
+</div>
   <div class="main">
   {% if not session.logged_in %}
     <a href="{{ url_for('login') }}">Log In</a> | <a href="{{ url_for('registration') }}">Register</a>
