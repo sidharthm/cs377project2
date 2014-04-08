@@ -51,7 +51,6 @@ def login():
         return 'ALREADY LOGGED IN!'
     if request.method == 'POST':
         error = None
-        #init_db();
         db=connect_db();
         cur=db.execute('select * from users where username=? and password=?',[request.form['username'],request.form['password']])
         entries = cur.fetchall()
@@ -73,4 +72,5 @@ def connect_db():
     return rv
 
 if __name__ == '__main__':
+    #init_db()
     app.run(debug=True)
