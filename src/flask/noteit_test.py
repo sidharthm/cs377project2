@@ -13,6 +13,17 @@ class indexTestCase(unittest.TestCase):
         os.close(self.db_fd)
         os.unlink(index.app.config['DATABASE'])
 
+    def login(self, username, password):
+        return self.app.post('/login', data=dict(
+            username=username,
+            password=password
+        ), follow_redirects=True)
+
+    def logout(self):
+        return self.app.get('/logout', follow_redirects=True)
+
+#these are the tests we made
+
     def test_empty_db(self):
     	#This tests whether the program has the basic components/links in it in at least plain-text form
         rv = self.app.get('/')
@@ -20,5 +31,21 @@ class indexTestCase(unittest.TestCase):
         assert 'Home' in rv.data
         assert 'Log-In' in rv.data
         assert 'Register' in rv.data
+
+    def test_login_logout(self):
+        #This tests whether login and logout works correctly
+        rv = self.login(flaskr.app.config['USERNAME'],
+                        flaskr.app.config['PASSWORD'])
+        assert 'You were logged in' in rv.data
+        rv = self.logout()
+        assert 'You were logged out' in rv.data
+        rv = self.login(flaskr.app.config['USERNAME'] + 'x',
+                        flaskr.app.config['PASSWORD'])
+        assert 'Invalid username' in rv.data
+        rv = self.login(flaskr.app.config['USERNAME'],
+                        flaskr.app.config['PASSWORD'] + 'x')
+        assert 'Invalid password' in rv.data
+
+
 if __name__ == '__main__':
     unittest.main()
