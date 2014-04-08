@@ -33,7 +33,7 @@ def registration():
     if session.get('logged_in'):
         return 'ALREADY LOGGED IN!'
     if request.method == 'POST':
-        init_db();
+        #init_db();
         db=connect_db();
         cur=db.execute('select * from users where username=?',[request.form['username']])
         entries = cur.fetchall()
