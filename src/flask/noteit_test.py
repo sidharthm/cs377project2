@@ -13,6 +13,17 @@ class indexTestCase(unittest.TestCase):
         os.close(self.db_fd)
         os.unlink(index.app.config['DATABASE'])
 
+    def login(self, username, password):
+        return self.app.post('/login', data=dict(
+            username=username,
+            password=password
+        ), follow_redirects=True)
+
+    def logout(self):
+        return self.app.get('/logout', follow_redirects=True)
+
+#these are the tests we made
+
     def test_empty_db(self):
     	#This tests whether the program has the basic components/links in it in at least plain-text form
         rv = self.app.get('/')
