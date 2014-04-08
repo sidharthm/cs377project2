@@ -2,10 +2,10 @@
 <head>
 </head>
 <body>
-<form method='post' action='/registration'>
-<input type='text' name='username'/>
-<input type='password' name='password'/>
-<input type='submit' value='Register'/>
+<form action="{{ url_for('registration') }}" method=post>
+Username: <input type="text" name="username" />
+Password: <input type="password" name="password" />
+<input type="submit" value="Register" />
 </form>
 </body>
 </html>

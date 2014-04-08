@@ -2,7 +2,7 @@
 <head>
 </head>
 <body>
-<form method='post' action='/'>
+<form method='post' action="{{ url_for('login') }}">
 <input type='text' name='username'/>
 <input type='password' name='password'/>
 <input type='submit' value='Login'/>
