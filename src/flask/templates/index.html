@@ -1,13 +1,9 @@
-<html>
-<title> Note-It </title>
-<head>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block body %}
 	<h1> Note-It </h1>
 	<ul>
 		<li> <a href = "{{url_for('welcome_page') }}"> Home </a> </li>
 		<li> <a href = "{{url_for('login') }}"> Log-In </a> </li>
 		<li> <a href = "{{url_for('registration') }}"> Register </a></li>
 	</ul>
-</body>
-</html>
+{% endblock %}
