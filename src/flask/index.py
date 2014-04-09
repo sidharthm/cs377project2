@@ -24,6 +24,14 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
+@app.route('/debug')
+def debug():
+    #init_db()
+    db = get_db()
+    cur=db.execute('select * from users')
+    entries = cur.fetchall()
+    return pprint.pformat(entries)
+
 @app.route('/')
 def welcome_page():
     return render_template('index.html')
@@ -38,7 +46,8 @@ def registration():
         cur=db.execute('select * from users where username=?',[request.form['username']])
         entries = cur.fetchall()
         if len(entries) is 0:
-            db.execute('insert into users (username,password) values(?,?)',[request.form['username'], request.form['password']])
+            error = db.execute('insert into users (username,password) values(?,?)',[request.form['username'], request.form['password']])
+            #return pprint.pformat(error)
             return pprint.pformat(entries)
         else:
             return 'Username taken'
@@ -51,7 +60,7 @@ def login():
         return 'ALREADY LOGGED IN!'
     if request.method == 'POST':
         error = None
-        db=connect_db();
+        db=get_db();
         cur=db.execute('select * from users where username=? and password=?',[request.form['username'],request.form['password']])
         entries = cur.fetchall()
         if len(entries) is 0:
@@ -70,6 +79,11 @@ def connect_db():
     rv = sqlite3.connect(app.config['DATABASE'])
     rv.row_factory=sqlite3.Row
     return rv
+
+def get_db():
+    if not hasattr(g,'sqlite_db'):
+        g.sqlite_db = connect_db()
+    return g.sqlite_db
 
 if __name__ == '__main__':
     #init_db()
