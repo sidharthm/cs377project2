@@ -30,7 +30,12 @@ def debug():
     db = get_db()
     cur=db.execute('select * from users')
     entries = cur.fetchall()
-    return pprint.pformat(entries)
+    ret = ''
+    for user in entries:
+        ret+=user['username']
+        ret += "\n"
+    return ret
+#    return pprint.pformat(entries)
 
 @app.route('/')
 def welcome_page():
@@ -46,9 +51,9 @@ def registration():
         cur=db.execute('select * from users where username=?',[request.form['username']])
         entries = cur.fetchall()
         if len(entries) is 0:
-            error = db.execute('insert into users (username,password) values(?,?)',[request.form['username'], request.form['password']])
-            #return pprint.pformat(error)
-            return pprint.pformat(entries)
+           error = db.execute('insert into users (username,password) values(?,?)',[request.form['username'], request.form['password']])
+           db.commit()
+           return str(len(error.fetchall()))
         else:
             return 'Username taken'
     else:
@@ -76,6 +81,7 @@ def logout():
     return 'Logged out'
 
 def connect_db():
+#    rv = sqlite3.connect('/var/www/flaskr.db')
     rv = sqlite3.connect(app.config['DATABASE'])
     rv.row_factory=sqlite3.Row
     return rv
