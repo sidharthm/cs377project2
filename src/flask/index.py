@@ -45,7 +45,9 @@ def welcome_page():
 def registration():
     if session.get('logged_in'):
         return 'ALREADY LOGGED IN!'
-    if request.method == 'POST':
+    if request.method != 'POST':
+        return render_template('registration.html')
+    else:
         #init_db();
         db=connect_db();
         cur=db.execute('select * from users where username=?',[request.form['username']])
@@ -56,8 +58,6 @@ def registration():
            return str(len(error.fetchall()))
         else:
             return 'Username taken'
-    else:
-        return render_template('registration.html')
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -71,6 +71,7 @@ def login():
         if len(entries) is 0:
             return 'Invalid'
         else:
+            session['logged_in']=True
             return 'Logged in'
     else:
         return render_template('login.html')
