@@ -1,10 +1,13 @@
 <!doctype html>
+<head>
 <title>Note-It</title>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.css') }}">
+</head>
+<body>
 <div class="page-header">
   <a href= "{{ url_for('welcome_page') }}"><h1>Note-It</h1></a>
 </div>
-  <div class="main">
+  <div class="container">
   {% if not session.logged_in %}
     <a href="{{ url_for('login') }}">Log In</a> | <a href="{{ url_for('registration') }}">Register</a>
 	
@@ -15,5 +18,8 @@
   {% for message in get_flashed_messages() %}
     <div class=flash>{{ message }}</div>
   {% endfor %}
-  {% block body %}{% endblock %}
+  <div class="container">
+  {% block body %}  {% endblock %}
+  </div>
 </div>
+</body>
