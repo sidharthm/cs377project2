@@ -1,9 +1,20 @@
+<script>
+	function showLV(){
+		document.getElementById("listView").style.display="block";
+		document.getElementById("gridView").style.display="none";
+	}
+	function showGV(){
+		document.getElementById("listView").style.display="none";
+		document.getElementById("gridView").style.display="block";
+	}
+</script>
 {% extends "layout.html" %}
 {% block body %}
-	<!--<h1> Note-It </h1>
-	<ul>
-		<li> <a href = "{{url_for('welcome_page') }}"> Home </a> </li>
-		<li> <a href = "{{url_for('login') }}"> Log-In </a> </li>
-		<li> <a href = "{{url_for('registration') }}"> Register </a></li>
-	</ul>-->
+	{%if session.logged_in%}
+		<div>
+		<ul style="list-style-type:none; position:absolute; left:0px">
+		<li><input type="button" name="listV" value="List" style="width:50px" onclick="showLV();".></input></li>
+		<li><input type="button" name="gridV" value="Grid" style="width:50px" onclick="showGV();"></input></li>
+		<div>
+	{%endif%}
 {% endblock %}
