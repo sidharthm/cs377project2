@@ -44,7 +44,8 @@ def welcome_page():
 @app.route('/registration', methods=['GET','POST'])
 def registration():
     if session.get('logged_in'):
-        return 'ALREADY LOGGED IN!'
+        flash('You are already logged in')
+        return render_template('index.html')
     if request.method != 'POST':
         return render_template('registration.html')
     else:
@@ -53,33 +54,42 @@ def registration():
         cur=db.execute('select * from users where username=?',[request.form['username']])
         entries = cur.fetchall()
         if len(entries) is 0:
-           error = db.execute('insert into users (username,password) values(?,?)',[request.form['username'], request.form['password']])
-           db.commit()
-           return str(len(error.fetchall()))
+            error = db.execute('insert into users (username,password) values(?,?)',[request.form['username'], request.form['password']])
+            db.commit()
+            if (len(error.fetchall()) is 0):
+                flash('Account created')
+            else:
+                flash('Account could not be created')
+            return render_template('index.html')
         else:
-            return 'Username taken'
+            flash('Username taken')
+            return render_template('index.html')
 
 @app.route('/login', methods=['GET','POST'])
 def login():
     if session.get('logged_in'):
-        return 'ALREADY LOGGED IN!'
+        flash('You are already logged in.')
+        return render_template('index.html')
     if request.method == 'POST':
         error = None
         db=get_db();
         cur=db.execute('select * from users where username=? and password=?',[request.form['username'],request.form['password']])
         entries = cur.fetchall()
         if len(entries) is 0:
-            return 'Invalid'
+            flash('Invalid username/password combination')
+            return render_template('login.html')
         else:
             session['logged_in']=True
-            return 'Logged in'
+            flash('Logged in successfully')
+            return render_template('index.html')
     else:
         return render_template('login.html')
 
 @app.route('/logout')
 def logout():
     session.pop('logged_in',None)
-    return 'Logged out'
+    flash('Logged out successfully')
+    return render_template('index.html')
 
 def connect_db():
 #    rv = sqlite3.connect('/var/www/flaskr.db')
@@ -93,5 +103,4 @@ def get_db():
     return g.sqlite_db
 
 if __name__ == '__main__':
-    #init_db()
     app.run(debug=True)

@@ -1,2 +1,3 @@
 flaskr.db
+/venv
 *.pyc

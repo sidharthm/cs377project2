@@ -15,12 +15,13 @@
     <a href="{{ url_for('logout') }}">log out</a>
   {% endif %}
   </div>
-  {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-  {% endfor %}
   <div class="container">
   {% block body %}  {% endblock %}
   </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash style="color:red; position:absolute; left: 200px;">{{ message }}</div>
+  {% endfor %}
+
 <div class = "container" id = "listView" style="display: none;">
   <ul class="list-group">
     <li class="list-group-item">Variable for Message 1</li>
