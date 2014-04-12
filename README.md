@@ -12,7 +12,7 @@ csci377-spring2014-project2
 ## Links ##
 
 [Product Backlog](https://docs.google.com/document/d/1_ySO7h_wbABCHpxgdNZS7vtZsN9u_AS0oIilcBiyxBs/edit) | 
-[Trello Kanban](https://trello.com/b/9w58pjY7/project2) | [inVision wireframe](http://invis.io/EKR3TMFV)
+[Trello Kanban](https://trello.com/b/9w58pjY7/project2) | [inVision wireframe](http://invis.io/EKR3TMFV) | [Live Product](http://quiet-chamber-4178.herokuapp.com/)
 
 
 ## Goals ##
