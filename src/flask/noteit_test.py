@@ -36,8 +36,8 @@ class indexTestCase(unittest.TestCase):
     	#This tests whether the program has the basic components/links in it in at least plain-text form
         rv = self.app.get('/')
         assert 'Note-It' in rv.data
-        assert 'Home' in rv.data
-        assert 'Log-In' in rv.data
+        #assert 'Home' in rv.data deprecated
+        assert 'Log In' in rv.data
         assert 'Register' in rv.data
 
     def test_register(self):
