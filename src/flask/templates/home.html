@@ -1,0 +1,96 @@
+{% extends "std.html"  %}
+
+{% block header %}
+{{ super() }}
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container-full">
+
+      <div class="row">
+       
+        <div class="col-lg-12 text-center v-center">
+          
+          <h1>Note-It</h1>
+          <p class="lead">Sign up or <a href="{{ url_for('login') }}">login</a> now!</p>
+          <br><br><br>
+          
+          <form class="col-md-offset-4 col-md-4 form-horizontal" action="{{ url_for('registration') }}" role="form" method="post">
+<div class="form-group">
+            <input class="form-control input-lg" title="Don't worry. We hate spam, and will not share your email with anyone." placeholder="Enter your email address" type="text" name="email">
+</div>
+<div class="form-group">
+            <input class="form-control input-lg" title="Enter your username" placeholder="Enter your username" type="text" name="username">
+</div>
+<div class="form-group">
+            <input class="form-control input-lg" title="Enter your password" placeholder="Enter your password" type="password" name="password">
+</div>
+<div class="form-group">
+            <input class="form-control input-lg" title="Re-enter your password" placeholder="Re-enter your password" type="password" name="password_repeat">
+</div>
+<div class="form-group">
+             <button type="submit" class="btn btn-lg btn-primary" type="button">Register</button>
+</div>
+{% if error %}
+  {{error}}
+{% endif %}
+</form>
+        </div>
+        
+      </div> <!-- /row -->
+  
+  	  <div class="row">
+       
+        <div class="col-lg-12 text-center v-center" style="font-size:39pt;">
+          <a href="#"><i class="icon-google-plus"></i></a> <a href="#"><i class="icon-facebook"></i></a>  <a href="#"><i class="icon-twitter"></i></a> <a href="#"><i class="icon-github"></i></a> <a href="#"><i class="icon-pinterest"></i></a>
+        </div>
+      
+      </div>
+  
+  	<br><br><br><br><br>
+
+</div> <!-- /container full -->
+
+<div class="container">
+  
+  	<hr>
+  
+  	<div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading"><h3>Hello.</h3></div>
+            <div class="panel-body">Someone put some random stuff about the app here.
+            </div>
+          </div>
+        </div>
+      	<div class="col-md-4">
+        	<div class="panel panel-default">
+            <div class="panel-heading"><h3>Hello.</h3></div>
+            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
+            Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
+            dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
+            Aliquam in felis sit amet augue.
+            </div>
+          </div>
+        </div>
+      	<div class="col-md-4">
+        	<div class="panel panel-default">
+            <div class="panel-heading"><h3>Hello.</h3></div>
+            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
+            Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
+            dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
+            Aliquam in felis sit amet augue.
+            </div>
+          </div>
+        </div>
+    </div>
+  
+	<div class="row">
+        <div class="col-lg-12">
+        <br><br>
+        <br><br>
+        </div>
+    </div>
+</div>
+{% endblock %}

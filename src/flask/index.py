@@ -39,37 +39,33 @@ def debug():
 
 @app.route('/')
 def welcome_page():
-    return render_template('index.html')
+    return render_template('home.html')
 
 @app.route('/registration', methods=['GET','POST'])
 def registration():
     if session.get('logged_in'):
-        flash('You are already logged in')
-        return render_template('index.html')
+        return redirect(url_for('notes'))
     if request.method != 'POST':
-        return render_template('registration.html')
-    else:
-        #init_db();
-        db=connect_db();
-        cur=db.execute('select * from users where username=?',[request.form['username']])
-        entries = cur.fetchall()
-        if len(entries) is 0:
-            error = db.execute('insert into users (username,password) values(?,?)',[request.form['username'], request.form['password']])
-            db.commit()
-            if (len(error.fetchall()) is 0):
-                flash('Account created')
-            else:
-                flash('Account could not be created')
-            return render_template('index.html')
+       return redirect(url_for('welcome_page'))
+  
+    db=connect_db();
+    cur=db.execute('select * from users where username=?',[request.form['username']])
+    entries = cur.fetchall()
+    if len(entries) is 0:
+        error = db.execute('insert into users (username,password,email) values(?,?,?)',[request.form['username'], request.form['password'], request.form['email']])
+        db.commit()
+        if (len(error.fetchall()) is 0):
+            flash('Account created')
+            redirect(url_for('login'))
         else:
-            flash('Username taken')
-            return render_template('index.html')
-
+            flash('Account could not be created')
+            return render_template('home.html', error='Account could not be created!')
+    else:
+        return render_template('home.html',error='Username taken')
 @app.route('/login', methods=['GET','POST'])
 def login():
     if session.get('logged_in'):
-        flash('You are already logged in.')
-        return render_template('index.html')
+        return redirect(url_for('notes'))
     if request.method == 'POST':
         error = None
         db=get_db();
@@ -90,6 +86,27 @@ def logout():
     session.pop('logged_in',None)
     flash('Logged out successfully')
     return render_template('index.html')
+
+@app.route('/notes/new', methods=['POST'])
+def newNotes():
+    return 1
+@app.route('/notes/edit', methods=['POST'])
+def editNotes():
+    return 1
+
+@app.route('/notes/delete', methods=['POST'])
+def deleteNotes():
+    return 1
+
+@app.route('/notes')
+def notes():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    db=get_db();
+    cur=db.execute('select * from notes')
+    entries = cur.fetchall()
+    return render_template('notes.html', notes=entries)
+
 
 def connect_db():
 #    rv = sqlite3.connect('/var/www/flaskr.db')
