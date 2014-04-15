@@ -1,6 +1,7 @@
 import pprint
 import os
 import sqlite3
+import json
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
 
 app = Flask(__name__)
@@ -75,6 +76,7 @@ def login():
             flash('Invalid username/password combination')
             return render_template('login.html')
         else:
+            session['user_id']=entries[0]['id']
             session['logged_in']=True
             flash('Logged in successfully')
             return render_template('index.html')
@@ -87,16 +89,35 @@ def logout():
     flash('Logged out successfully')
     return render_template('index.html')
 
-@app.route('/notes/new', methods=['POST'])
-def newNotes():
-    return 1
+@app.route('/notes/new', methods=['GET','POST'])
+def newNotes():    
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    db=get_db()
+    error = db.execute('insert into notes (user_id,title,content) values(?,?,?)',[session['user_id'], request.form['title'], request.form['content']])
+    db.commit()
+    if (len(error.fetchall()) is 0):
+        return "good"
+    else:
+        return "bad"
+
 @app.route('/notes/edit', methods=['POST'])
 def editNotes():
-    return 1
+    db=get_db()
+    error=db.execute('update notes set title=? content=? where id=?',[request.form['title'],request.form['content'],request.form['id']])
+    if (len(error.fetchall()) is 0):
+        return "good"
+    else:
+        return "bad"
 
 @app.route('/notes/delete', methods=['POST'])
 def deleteNotes():
-    return 1
+    db=get_db()
+    error=db.execute('delete from notes where id=?',[request.form['id']])
+    if (len(error.fetchall()) is 0):
+        return "good"
+    else:
+        return "bad"
 
 @app.route('/notes')
 def notes():
@@ -105,7 +126,10 @@ def notes():
     db=get_db();
     cur=db.execute('select * from notes')
     entries = cur.fetchall()
-    return render_template('notes.html', notes=entries)
+    jsonable = []
+    for entry in entries:
+        jsonable.append( {'id': entry['id'],'title':entry['title'],'content':entry['content']})
+    return render_template('notes.html', notes=jsonable)
 
 
 def connect_db():
