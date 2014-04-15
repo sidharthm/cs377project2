@@ -5,12 +5,39 @@
 {% endblock %}
 {% block body %}
 
-test test test
-
 {{ notes }}
 
+{% if notes.length > 0 %}
+<div class="row-fluid">
+  <div class="span3">
+    <div class="note">
+
+    </div>
+  </div>
+</div>
+{% endif %}
+<div class="newnote">
+<form action="" method="post" role="form">
+
+</form>
+</div>
+
+<div id="saving" style="position:absolute;top:50%;left:50%;font-size:2em;margin-left:-1em;">
+Saving...
+</div>
+<div id="saving_done" style="position:absolute;top:50%;left:50%;font-size:2em;margin-left:-1em;">
+Done
+</div>
+
+
+{% endblock %}
+
+{% block footer %}
+{{super()}}
 <script>
-
+$(function(){
+$('#saving').hide();
+$('#saving_done').hide();
+});
 </script>
-
 {% endblock %}
