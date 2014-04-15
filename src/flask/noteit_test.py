@@ -30,6 +30,25 @@ class indexTestCase(unittest.TestCase):
     def logout(self):
         return self.app.get('/logout', follow_redirects=True)
 
+     
+    def newNotes(self,user_id,title,content): 
+	return self.app.post('/notes/new', data=dict(
+            user_id=user_id,
+            title=title,
+	    content=content,
+        ), follow_redirects=True)
+    #Reviewed by Sid & Jimmy 2:51 PM 4/15
+    #Need to update syntax to fit Roy's planned syntax
+
+
+    def deleteNotes(self,id):
+        return self.app.post('/notes/delete', data=dict(
+            id=id,
+        ), follow_redirects=True)
+    #Reviewed by Sid & Jimmy 2:51 PM 4/15
+    #Need to update syntax to fit Roy's planned syntax
+
+
 #Tests are listed below
 
     def test_empty_db(self):
@@ -83,6 +102,20 @@ class indexTestCase(unittest.TestCase):
         #Test Part 3 - User logs out of their account
         rv = self.logout()
         assert 'Logged out successfully'
+
+    def test_newNotes(self):
+	#This test ensures a new note can be created
+        rv = self.newNotes('admin','NewNote','notecontent')
+        assert 'good' in rv.data
+
+    def test_deleteNotes(self):
+	#This test ensures that the deleted note is removed from the database
+        rv = self.deleteNotes('admin')
+        assert 'good' in rv.data
+
+    #Reviewed by Sid & Jimmy 2:51 PM 4/15
+    #Need to roll these tests together to account for spontaneous DB generation
+
 
 if __name__ == '__main__':
     unittest.main()
