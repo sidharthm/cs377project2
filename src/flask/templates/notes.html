@@ -20,6 +20,20 @@
 {% endfor %}
 {% endif %}
 
+<div class="container-fluid">
+<div class="row">
+<div class="note .col-md-3">
+hey this is test
+</div>
+<div class="note .col-md-3">
+hey this is test
+</div>
+<div class="note .col-md-3">
+hey this is test
+</div>
+</div>
+</div>
+
 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   New Note
 </button>
@@ -35,17 +49,17 @@
         <h4 class="modal-title" id="myModalLabel">
 <div class="input-group">
 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-	<input type="text" class="form-control" placeholder="Title" name="title"/>
+	<input id="newnotetitle" type="text" class="form-control" placeholder="Title" name="title"/>
 </div>
 	</h4>
       </div>
 
       <div class="modal-body">
-        <textarea class="form-control" placeholder="enter notes here" name="content" rows="4"></textarea>
+        <textarea id="newnotecontent" class="form-control" placeholder="enter notes here" name="content" rows="4"></textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Create</button>
+        <button type="button" class="btn btn-primary" onclick="createNote()">Create</button>
       </div>
 
       </form>
@@ -56,11 +70,6 @@
 
 
 
-
-<div class="newnote">
-
-</form>
-</div>
 
 
 <div id="saving" style="position:absolute;top:50%;left:50%;font-size:2em;margin-left:-1em;">
@@ -76,9 +85,19 @@ Done
 {% block footer %}
 {{super()}}
 <script>
-$(function(){
-$('#saving').hide();
-$('#saving_done').hide();
-});
+  function createNote(){
+  $.ajax({
+  type: "POST",
+  url: "{{url_for('newNotes')}}",
+  data: { title: $('#newnotetitle').val(), content: $('#newnotecontent').val() }
+  })
+  .done(function( msg ) {
+  console.log(msg);
+  });
+  }
+  $(function(){
+  $('#saving').hide();
+  $('#saving_done').hide();
+  });
 </script>
 {% endblock %}
