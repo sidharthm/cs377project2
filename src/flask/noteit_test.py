@@ -30,23 +30,24 @@ class indexTestCase(unittest.TestCase):
     def logout(self):
         return self.app.get('/logout', follow_redirects=True)
 
-"""     
-    def newNotes(self,noteid,note): 
+     
+    def newNotes(self,user_id,title,content): 
 	return self.app.post('/notes/new', data=dict(
-            noteid=noteid,
-            note=note
+            user_id=user_id,
+            title=title,
+	    content=content,
         ), follow_redirects=True)
     #Reviewed by Sid & Jimmy 2:51 PM 4/15
     #Need to update syntax to fit Roy's planned syntax
-"""
-"""
-    def deleteNotes(self,noteid):
+
+
+    def deleteNotes(self,id):
         return self.app.post('/notes/delete', data=dict(
-            noteid=noteid,
+            id=id,
         ), follow_redirects=True)
     #Reviewed by Sid & Jimmy 2:51 PM 4/15
     #Need to update syntax to fit Roy's planned syntax
-"""
+
 
 #Tests are listed below
 
@@ -102,20 +103,19 @@ class indexTestCase(unittest.TestCase):
         rv = self.logout()
         assert 'Logged out successfully'
 
-"""    def test_newNotes(self):
+    def test_newNotes(self):
 	#This test ensures a new note can be created
-        rv = self.newNotes('1','hello')
-        assert 'Note Created' in rv.data
-"""
+        rv = self.newNotes('admin','NewNote','notecontent')
+        assert 'good' in rv.data
 
-"""    def test_deleteNotes(self):
+    def test_deleteNotes(self):
 	#This test ensures that the deleted note is removed from the database
-        rv = self.deleteNotes('1')
-        assert 'Note Deleted' in rv.data
+        rv = self.deleteNotes('admin')
+        assert 'good' in rv.data
 
     #Reviewed by Sid & Jimmy 2:51 PM 4/15
     #Need to roll these tests together to account for spontaneous DB generation
-"""
+
 
 if __name__ == '__main__':
     unittest.main()
