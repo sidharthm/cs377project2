@@ -12,5 +12,6 @@ DROP TABLE IF EXISTS notes;
 CREATE TABLE notes(
 id integer primary key autoincrement,
 user_id id integer,
+title text not null,
 content text not null
 );

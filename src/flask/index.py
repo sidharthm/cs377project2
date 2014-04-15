@@ -75,6 +75,7 @@ def login():
             flash('Invalid username/password combination')
             return render_template('login.html')
         else:
+            session['user_id']=entries[0]['id']
             session['logged_in']=True
             flash('Logged in successfully')
             return render_template('index.html')
@@ -88,8 +89,21 @@ def logout():
     return render_template('index.html')
 
 @app.route('/notes/new', methods=['POST'])
-def newNotes():
-    return 1
+def newNotes():    
+#    return "test test test"
+#    return str(session['user_id']) + " "
+    error = db.execute('insert into notes (user_id,title,content) values(?,?,?)',[session['user_id'], request.form['title'], request.form['content']])
+    db.commit()
+    if (len(error.fetchall()) is 0):
+        flash('Account created')
+        return redirect(url_for('login'))
+    else:
+        flash('Account could not be created')
+        return render_template('home.html', error='Account could not be created!')
+
+
+    return request.form['title'] + " " + request.form['content']
+
 @app.route('/notes/edit', methods=['POST'])
 def editNotes():
     return 1
