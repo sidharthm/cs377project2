@@ -1,0 +1,46 @@
+{% extends "std.html" %}
+
+{% block header %}
+{{ super() }}
+        <style type="text/css">
+            .modal-footer {   border-top: 0px; }
+        </style>
+{% endblock %}
+
+{% block body %}
+
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h1 class="text-center">Login</h1>
+      </div>
+      <div class="modal-body">
+          <form class="form col-md-12 center-block" method="post" action="{{url_for('login')}}">
+            <div class="form-group">
+              <input type="text" class="form-control input-lg" placeholder="Username" name="username">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control input-lg" placeholder="Password" name="password">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-lg btn-block">Sign In</button>
+              <span class="pull-right"><a href="{{url_for('welcome_page')}}">Register</a></span><span><a href="#">Need help?</a></span>
+<div style="color:red">
+  {% for message in get_flashed_messages() %}
+    <div class=flash style="color:red; text-align:center;">{{ message }}</div>
+  {% endfor %}
+</div>
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+          <div class="col-md-12">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		  </div>	
+      </div>
+  </div>
+  </div>
+</div>
+{% endblock %}

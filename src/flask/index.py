@@ -74,14 +74,14 @@ def login():
         entries = cur.fetchall()
         if len(entries) is 0:
             flash('Invalid username/password combination')
-            return render_template('login.html')
+            return render_template('loginnew.html')
         else:
             session['user_id']=entries[0]['id']
             session['logged_in']=True
             flash('Logged in successfully')
-            return render_template('index.html')
+            return render_template('notes.html')
     else:
-        return render_template('login.html')
+        return render_template('loginnew.html')
 
 @app.route('/logout')
 def logout():

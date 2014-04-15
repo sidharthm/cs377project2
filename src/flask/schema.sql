@@ -13,5 +13,6 @@ CREATE TABLE notes(
 id integer primary key autoincrement,
 user_id id integer,
 title text not null,
-content text not null
+content text not null,
+color text not null
 );
