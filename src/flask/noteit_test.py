@@ -31,17 +31,21 @@ class indexTestCase(unittest.TestCase):
         return self.app.get('/logout', follow_redirects=True)
 
 """     
-    def newNotes(self,noteid,note):
+    def newNotes(self,noteid,note): 
 	return self.app.post('/notes/new', data=dict(
             noteid=noteid,
             note=note
         ), follow_redirects=True)
+    #Reviewed by Sid & Jimmy 2:51 PM 4/15
+    #Need to update syntax to fit Roy's planned syntax
 """
 """
     def deleteNotes(self,noteid):
         return self.app.post('/notes/delete', data=dict(
             noteid=noteid,
         ), follow_redirects=True)
+    #Reviewed by Sid & Jimmy 2:51 PM 4/15
+    #Need to update syntax to fit Roy's planned syntax
 """
 
 #Tests are listed below
@@ -108,6 +112,9 @@ class indexTestCase(unittest.TestCase):
 	#This test ensures that the deleted note is removed from the database
         rv = self.deleteNotes('1')
         assert 'Note Deleted' in rv.data
+
+    #Reviewed by Sid & Jimmy 2:51 PM 4/15
+    #Need to roll these tests together to account for spontaneous DB generation
 """
 
 if __name__ == '__main__':
