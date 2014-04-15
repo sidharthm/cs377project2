@@ -56,7 +56,7 @@ def registration():
         db.commit()
         if (len(error.fetchall()) is 0):
             flash('Account created')
-            redirect(url_for('login'))
+            return redirect(url_for('login'))
         else:
             flash('Account could not be created')
             return render_template('home.html', error='Account could not be created!')
