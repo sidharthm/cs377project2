@@ -5,9 +5,10 @@
 {% endblock %}
 {% block body %}
 
+{% if notes|length > 0 %}
 {{ notes|tojson }}
 
-{% if notes|length > 0 %}
+
 {% set iterator=1 %}
 {% for note in notes %}
 <div class="row-fluid">

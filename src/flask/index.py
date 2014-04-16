@@ -33,8 +33,11 @@ def debug():
     entries = cur.fetchall()
     ret = ''
     for user in entries:
-        ret+=user['username']
-        ret += "\n"
+		#ret+=note['color']
+		ret+=user['username']
+		ret += "\n"
+		ret += user['password']
+		ret += "\n"
     return ret
 #    return pprint.pformat(entries)
 
@@ -94,7 +97,7 @@ def newNotes():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     db=get_db()
-    error = db.execute('insert into notes (user_id,title,content) values(?,?,?)',[session['user_id'], request.form['title'], request.form['content']])
+    error = db.execute('insert into notes (user_id,title,content,color) values(?,?,?,?)',[session['user_id'], request.form['title'], request.form['content'], 'yellow'])
     db.commit()
     if (len(error.fetchall()) is 0):
         return "good"
@@ -144,4 +147,5 @@ def get_db():
     return g.sqlite_db
 
 if __name__ == '__main__':
-    app.run(debug=True)
+	app.run(debug=True)
+	
