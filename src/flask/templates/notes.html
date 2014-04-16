@@ -4,8 +4,17 @@
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/notes.css') }}">
 {% endblock %}
 {% block body %}
+<nav class="navbar navbar-inverse" role="navigation">
+	<div class="navbar-header">
+		<a href="#" class="navbar-brand">Notetaker</a>
+	</div>
+	<button class="btn btn-success navbar-btn">Add a New Note</button> 
+        <ul class="nav navbar-nav navbar-right">
 
+            <li><a href="#">Logout</a></li>
 
+        </ul>
+</nav>
 
 <div class="container-fluid" id="notesContainer">
   <div class="row">
