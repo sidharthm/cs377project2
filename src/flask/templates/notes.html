@@ -5,21 +5,6 @@
 {% endblock %}
 {% block body %}
 
-{% if notes|length > 0 %}
-{{ notes|tojson }}
-
-
-{% set iterator=1 %}
-{% for note in notes %}
-<div class="row-fluid">
-  <div class="span3">
-    <div class="note">
-
-    </div>
-  </div>
-</div>
-{% endfor %}
-{% endif %}
 
 
 <div class="container-fluid">
@@ -143,6 +128,8 @@ Done
 {% block footer %}
 {{super()}}
 <script>
+var notes = {{ notes|tojson }};
+console.log(notes);
   function createNote(){
   $.ajax({
   type: "POST",
