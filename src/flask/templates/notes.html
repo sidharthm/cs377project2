@@ -5,6 +5,18 @@
 {% endblock %}
 {% block body %}
 
+<nav class="navbar navbar-inverse" role="navigation">
+	<div class="navbar-header">
+		<a href="#" class="navbar-brand">Notetaker</a>
+	</div>
+	<button class="btn btn-success navbar-btn">Add a New Note</button> 
+        <ul class="nav navbar-nav navbar-right">
+
+            <li><a href="#">Logout</a></li>
+
+        </ul>
+</nav>
+
 {% if notes|length > 0 %}
 {{ notes|tojson }}
 
