@@ -108,6 +108,15 @@ Done
 {% block footer %}
 {{super()}}
 <script>
+
+  function cloneAndFillNote(title, content, id){
+  var cloned = $('#notetemplate').clone(true,true);
+  cloned.attr('id',id);
+  cloned.children(".note").children('.nano-content').children("p.notetitle").text(title);
+  cloned.children('.note').children('.nano-content').children('p.notecontent').text(content);
+  return cloned;
+  }
+
   var notes = {{ notes|tojson }};
 var numNotesDisplayed = 0;
   console.log(notes);
@@ -137,27 +146,24 @@ console.log(jsonIn);
 if(numNotesDisplayed % 4 == 0){
 $('#notesContainer').append($("<div></div>").addClass("row"));
 }
-  var cloned = $('#notetemplate').clone(true,true);
-//  console.log(cloned);
-  cloned.attr('id',jsonIn['id']);
-  cloned.children(".note").children('.nano-content').children("p.notetitle").text(jsonIn['title']);
-  cloned.children('.note').children('.nano-content').children('p.notecontent').text(jsonIn['content']);
-//cloned.show().appendTo('#notesContainer',':last-child','.row');
-if(numNotesDisplayed <= 4){
-console.log("add");
-cloned.addClass("animated slideInDown");
-}else{
-switch(numNotesDisplayed % 4){
-case 0:
-case 1:
-cloned.addClass("animated slideInLeft");
-break;
-case 2:
-case 3:
-cloned.addClass("animated slideInRight");
-break;
-}
-}
+
+var cloned=cloneAndFillNote(jsonIn['title'],jsonIn['content'],jsonIn['id']);
+
+	   if(numNotesDisplayed <= 4){
+				   console.log("add");
+				   cloned.addClass("animated slideInDown");
+				   }else{
+				   switch(numNotesDisplayed % 4){
+				   case 0:
+				   case 1:
+				   cloned.addClass("animated slideInLeft");
+				   break;
+				   case 2:
+				   case 3:
+				   cloned.addClass("animated slideInRight");
+				   break;
+				   }
+				   }
   $('#notesContainer').children('.row:last').append(cloned.show());
   console.log("added note titled: " + jsonIn['title']);
 numNotesDisplayed++;
@@ -174,7 +180,7 @@ numNotesDisplayed++;
 displayNote({'title':$('#newnotetitle').val(),'content': $('#newnotecontent').val(),'id':msg});
   });
   }
-function showEditNote(note){
+ function showEditNote(note){
 note = $(note);
 console.log(note.parent());
 var editnote = $('#editmodal');
@@ -203,7 +209,7 @@ function deleteNote(){
   })
   .done(function( msg ) {
   console.log(msg);
-//location.reload();
+  location.reload();
   });
 
 }
