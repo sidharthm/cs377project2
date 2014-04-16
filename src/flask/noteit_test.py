@@ -33,11 +33,11 @@ class indexTestCase(unittest.TestCase):
 
      
     def newNotes(self,user_id,title,content,color): 
-	return self.app.post('/notes/new', data=dict(
+        return self.app.post('/notes/new', data=dict(
             user_id=user_id,
             title=title,
-	    content=content,
-		color=color,
+            content=content,
+            color=color,
         ), follow_redirects=True)
     #Reviewed by Sid & Jimmy 2:51 PM 4/15
     #Need to update syntax to fit Roy's planned syntax
@@ -50,13 +50,13 @@ class indexTestCase(unittest.TestCase):
     #Reviewed by Sid & Jimmy 2:51 PM 4/15
     #Need to update syntax to fit Roy's planned syntax
 
-	
-	def editNotes(self,title,content,color,id):
-		return self.app.post('/notes/edit', data=dict(
-			title=title,
-			content=content,
-			color=color,
-			id=id
+
+    def editNotes(self,title,content,color,id):
+        return self.app.post('/notes/edit', data=dict(
+            title=title,
+            content=content,
+            color=color,
+            id=id
         ), follow_redirects=True)
 
 #Tests are listed below
@@ -123,8 +123,8 @@ class indexTestCase(unittest.TestCase):
 		assert 'Logged in successfully'
 		#Test Part 3 - User can create a new note
 		rv = self.newNotes('admin','NewNote','notecontent','yellow')
-		assert 'good' in rv.data
-		print('newNotestest')
+		assert '1' in rv.data
+		#print('newNotestest')
 
     def test_deleteNotes(self):
 	#This test ensures that the deleted note is removed from the databaseprint('deleteTest')
@@ -133,22 +133,23 @@ class indexTestCase(unittest.TestCase):
 		#Reviewed by Sid & Jimmy 2:51 PM 4/15
 		#Need to roll these tests together to account for spontaneous DB generation
 
-	
-def test_editNotes(self):
-	#This test ensures that a note can be created and edited
-	print('editTest');
-	#Test Part 1 - User creates an account
-	rv = self.register('admin','password', 'email')
-	assert 'Account created' in rv.data
-	#Test Part 2 - User logs into their account
-	rv = self.login('admin', 'password')
-	assert 'Logged in successfully' in rv.data
-	#Test Part 3 - User can create a new note
-	rv = self.newNotes('admin','NewNote','notecontent','yellow')
-	assert 'good' in rv.data
-	#Test Part 4 - User can edit a note
-	rv = self.editNotes('newTitle','newcontent','red','1')
-	assert 'good' in rv.data
+
+    def test_editNotes(self):
+        #This test ensures that a note can be created and edited
+        print('editTest');
+        #Test Part 1 - User creates an account
+        rv = self.register('admin','password', 'email')
+        assert 'Account created' in rv.data
+        #Test Part 2 - User logs into their account
+        rv = self.login('admin', 'password')
+        assert 'Logout' in rv.data
+        #Test Part 3 - User can create a new note
+        rv = self.newNotes('admin','NewNote','notecontent','yellow')
+        assert '1' in rv.data
+        #Test Part 4 - User can edit a note
+        rv = self.editNotes('newTitle','newcontent','red','1')
+        #not a very good indication of whether the editing passed or not
+        assert '1' in rv.data
 
 if __name__ == '__main__':
 	unittest.main()
