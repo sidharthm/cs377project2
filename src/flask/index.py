@@ -81,8 +81,7 @@ def login():
         else:
             session['user_id']=entries[0]['id']
             session['logged_in']=True
-            flash('Logged in successfully')
-            return render_template('notes.html')
+            return redirect(url_for('notes'))
     else:
         return render_template('loginnew.html')
 
@@ -100,7 +99,8 @@ def newNotes():
     error = db.execute('insert into notes (user_id,title,content,color) values(?,?,?,?)',[session['user_id'], request.form['title'], request.form['content'], 'yellow'])
     db.commit()
     if (len(error.fetchall()) is 0):
-        return "good"
+        curs = db.execute('select max(id) from notes')
+        return curs.fetchone()[0]
     else:
         return "bad"
 
@@ -132,6 +132,7 @@ def notes():
     jsonable = []
     for entry in entries:
         jsonable.append( {'id': entry['id'],'title':entry['title'],'content':entry['content']})
+    #return pprint.pformat(jsonable)
     return render_template('notes.html', notes=jsonable)
 
 
