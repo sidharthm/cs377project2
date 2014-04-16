@@ -94,9 +94,11 @@ Done
 
 
 <div class="col-md-3" style="display:none;" id="notetemplate" >
-<div class="note" >
+<div class="note nano" >
+<div class="nano-content">
 <p class="notetitle" onclick="showEditNote(this)"></p>
 <p class="notecontent" onclick="showEditNote(this)"></p>
+</div>
 </div>
 </div>
 
@@ -131,14 +133,15 @@ displayNotesArray(notesIn,index+1);
   }
   }
   function displayNote(jsonIn){
+console.log(jsonIn);
 if(numNotesDisplayed % 4 == 0){
 $('#notesContainer').append($("<div></div>").addClass("row"));
 }
   var cloned = $('#notetemplate').clone(true,true);
 //  console.log(cloned);
   cloned.attr('id',jsonIn['id']);
-  cloned.children(".note").children("p.notetitle").text(jsonIn['title']);
-  cloned.children('.note').children('p.notecontent').text(jsonIn['content']);
+  cloned.children(".note").children('.nano-content').children("p.notetitle").text(jsonIn['title']);
+  cloned.children('.note').children('.nano-content').children('p.notecontent').text(jsonIn['content']);
 //cloned.show().appendTo('#notesContainer',':last-child','.row');
 if(numNotesDisplayed <= 4){
 console.log("add");
@@ -160,14 +163,15 @@ break;
 numNotesDisplayed++;
 }
   function createNote(){
+//console.log($('#newnotecontent').val());
   $.ajax({
   type: "POST",
   url: "{{url_for('newNotes')}}",
   data: { title: $('#newnotetitle').val(), content: $('#newnotecontent').val() }
   })
   .done(function( msg ) {
-  console.log(msg);
-displayNote({'title':$('#newnotetitle').val(),'content':$('newnotecontent').val(),'id':msg});
+  console.log("New note created with ID: " + msg);
+displayNote({'title':$('#newnotetitle').val(),'content': $('#newnotecontent').val(),'id':msg});
   });
   }
 function showEditNote(note){
@@ -176,7 +180,7 @@ console.log(note.parent());
 var editnote = $('#editmodal');
 $('#editnotetitle').val(note.parent().children('p.notetitle').text());
 $('#editnotecontent').val(note.parent().children('p.notecontent').text());
-$('#editnoteid').val(note.parent().parent().attr('id'))
+$('#editnoteid').val(note.parent().parent().parent().attr('id'))
 editnote.modal('show');
 }
 function editNote(){
@@ -199,7 +203,7 @@ function deleteNote(){
   })
   .done(function( msg ) {
   console.log(msg);
-location.reload();
+//location.reload();
   });
 
 }
@@ -207,7 +211,7 @@ location.reload();
 
 
   $(function(){
-
+  //$('.nano').nanoScroller( {} );
   });
 </script>
 {% endblock %}
