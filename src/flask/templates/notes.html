@@ -4,7 +4,7 @@
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/notes.css') }}">
 {% endblock %}
 {% block body %}
-<nav class="navbar navbar-inverse" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="navbar-header">
 		<a href="#" class="navbar-brand">Note-It</a>
 	</div>
@@ -19,63 +19,8 @@
         </ul>
 </nav>
 
-<div class="container-fluid" id="notesContainer">
-  <div class="row">
-    
-    <div class="col-md-3">
-      <div class = "note">
-	<br><br><br>
-	<center><p>Fish is a fish is a fish is a fish is a bibbit.</p></center>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class = "note">
-	<br><br><br>
-	<center><p>Fish is a fish is a fish is a fish is a bibbit.</p></center>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class = "note">
-	<br><br><br>
-	<center><p>Fish is a fish is a fish is a fish is a bibbit.</p></center>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class = "note">
-	<br><br><br>
-	<center><p>Fish is a fish is a fish is a fish is a bibbit.</p></center>
-      </div>
-    </div>
-    
-  </div>
-
-  <div class="row">
-    
-    <div class="col-md-3">
-      <div class="note">
-	<br><br><br>
-	<center><p>Fish is a fish is a fish is a fish is a bibbit.</p></center>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class = "note">
-	<br><br><br>
-	<center><p>Fish is a fish is a fish is a fish is a bibbit.</p></center>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class = "note">
-	<br><br><br>
-	<center><p>Fish is a fish is a fish is a fish is a bibbit.</p></center>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class = "note">
-	<br><br><br>
-	<center><p>Fish is a fish is a fish is a fish is a bibbit..</p></center>
-      </div>
-    </div>
-  </div>
+<div class="container-fluid" id="notesContainer" style="margin-top:3em;margin-bottom:3em;">
+ 
 </div>
 
 
@@ -123,9 +68,8 @@ Done
 
 <div class="col-md-3" style="display:none;" id="notetemplate">
 <div class="note">
-<br/><br/><br/>
-<center><p class="notetitle"></p></center>
-<center><p></p></center>
+<p class="notetitle"></p>
+<p class="notecontent"></p>
 </div>
 </div>
 
@@ -155,10 +99,10 @@ if(numNotesDisplayed % 4 == 0){
 $('#notesContainer').append($("<div></div>").addClass("row"));
 }
   var cloned = $('#notetemplate').clone(true,true);
-  console.log(cloned);
+//  console.log(cloned);
   cloned.attr('id',jsonIn['id']);
-  cloned.children(".note").children("center:first").children().text(jsonIn['title']);
-  cloned.children('.note').children("center:last").children().text(jsonIn['content']);
+  cloned.children(".note").children("p.notetitle").text(jsonIn['title']);
+  cloned.children('.note').children('p.notecontent').text(jsonIn['content']);
 //cloned.show().appendTo('#notesContainer',':last-child','.row');
   $('#notesContainer').children('.row:last').append(cloned.show());
   console.log("added note titled: " + jsonIn['title']);

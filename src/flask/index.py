@@ -92,15 +92,21 @@ def logout():
     return render_template('index.html')
 
 @app.route('/notes/new', methods=['GET','POST'])
-def newNotes():    
+def newNotes():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
+    try:
+        request.form['title']
+        request.form['content']
+    except:
+        return 'Invalid request; missing fields'
     db=get_db()
     error = db.execute('insert into notes (user_id,title,content,color) values(?,?,?,?)',[session['user_id'], request.form['title'], request.form['content'], 'yellow'])
     db.commit()
     if (len(error.fetchall()) is 0):
         curs = db.execute('select max(id) from notes')
-        return curs.fetchone()[0]
+        val = curs.fetchone()
+        return str(val[0])
     else:
         return "bad"
 
