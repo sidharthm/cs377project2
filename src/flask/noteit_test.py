@@ -134,21 +134,21 @@ class indexTestCase(unittest.TestCase):
 		#Need to roll these tests together to account for spontaneous DB generation
 
 	
-	def test_editNotes(self):
+def test_editNotes(self):
 	#This test ensures that a note can be created and edited
-		print('editTest');
-		#Test Part 1 - User creates an account
-		rv = self.register('admin','password', 'email')
-		assert 'Account created' in rv.data
-		#Test Part 2 - User logs into their account
-		rv = self.login('admin', 'password')
-		assert 'Logged in successfully' in rv.data
-		#Test Part 3 - User can create a new note
-		rv = self.newNotes('admin','NewNote','notecontent','yellow')
-		assert 'good' in rv.data
-		#Test Part 4 - User can edit a note
-		rv = self.editNotes('newTitle','newcontent','red','1')
-		assert 'good' in rv.data
+	print('editTest');
+	#Test Part 1 - User creates an account
+	rv = self.register('admin','password', 'email')
+	assert 'Account created' in rv.data
+	#Test Part 2 - User logs into their account
+	rv = self.login('admin', 'password')
+	assert 'Logged in successfully' in rv.data
+	#Test Part 3 - User can create a new note
+	rv = self.newNotes('admin','NewNote','notecontent','yellow')
+	assert 'good' in rv.data
+	#Test Part 4 - User can edit a note
+	rv = self.editNotes('newTitle','newcontent','red','1')
+	assert 'good' in rv.data
 
 if __name__ == '__main__':
 	unittest.main()
