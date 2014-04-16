@@ -112,17 +112,30 @@ def newNotes():
 
 @app.route('/notes/edit', methods=['POST'])
 def editNotes():
+    try:
+        request.form['title']
+        request.form['content']
+        request.form['id']
+    except:
+        return 'Invalid request; missing fields'
     db=get_db()
-    error=db.execute('update notes set title=? content=? where id=?',[request.form['title'],request.form['content'],request.form['id']])
+    error=db.execute('update notes set title=?, content=? where id=?',[request.form['title'],request.form['content'],request.form['id']])
+    db.commit()
     if (len(error.fetchall()) is 0):
-        return "good"
+        return str(request.form['id'])
+        #return "good new vals are " + request.form['title'] + " " + request.form['content']
     else:
         return "bad"
 
 @app.route('/notes/delete', methods=['POST'])
 def deleteNotes():
+    try:
+        request.form['id']
+    except:
+        return "invalid request: missing fields"
     db=get_db()
     error=db.execute('delete from notes where id=?',[request.form['id']])
+    db.commit()
     if (len(error.fetchall()) is 0):
         return "good"
     else:

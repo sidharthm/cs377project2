@@ -55,8 +55,35 @@
 </div>
 
 
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true" id="editmodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <form action="{{url_for('editNotes')}}" method="post" role="form">
 
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteNote()"><span class="glyphicon glyphicon-trash"></span></button>
+        <h4 class="modal-title" id="myModalLabel">
+<div class="input-group">
+<span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+	<input id="editnotetitle" type="text" class="form-control" placeholder="Title" name="title"/>
+</div>
+	</h4>
+      </div>
+      <input type="hidden" id="editnoteid" name="id"/>
+      <div class="modal-body">
+        <textarea id="editnotecontent" class="form-control" placeholder="enter notes here" name="content" rows="4"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editNote()">Edit</button>
+      </div>
 
+      </form>
+
+    </div>
+  </div>
+</div>
 
 <div id="saving" style="position:absolute;top:50%;left:50%;font-size:2em;margin-left:-1em;display:none;">
 Saving...
@@ -66,10 +93,10 @@ Done
 </div>
 
 
-<div class="col-md-3" style="display:none;" id="notetemplate">
-<div class="note">
-<p class="notetitle"></p>
-<p class="notecontent"></p>
+<div class="col-md-3" style="display:none;" id="notetemplate" >
+<div class="note" >
+<p class="notetitle" onclick="showEditNote(this)"></p>
+<p class="notecontent" onclick="showEditNote(this)"></p>
 </div>
 </div>
 
@@ -82,9 +109,18 @@ Done
   var notes = {{ notes|tojson }};
 var numNotesDisplayed = 0;
   console.log(notes);
-for(var i = 0 ; i != notes.length; i++){
-displayNote(notes[i]);
-  }
+
+displayNotesArray(notes,0);
+
+function displayNotesArray(notesIn, index){
+setTimeout(function(){
+if(index < notesIn.length){
+displayNote(notesIn[index]);
+displayNotesArray(notesIn,index+1);
+}
+},150);
+}  
+
   var noteDirectives = {
   '@id':'id',
   'div.note':{
@@ -104,6 +140,21 @@ $('#notesContainer').append($("<div></div>").addClass("row"));
   cloned.children(".note").children("p.notetitle").text(jsonIn['title']);
   cloned.children('.note').children('p.notecontent').text(jsonIn['content']);
 //cloned.show().appendTo('#notesContainer',':last-child','.row');
+if(numNotesDisplayed <= 4){
+console.log("add");
+cloned.addClass("animated slideInDown");
+}else{
+switch(numNotesDisplayed % 4){
+case 0:
+case 1:
+cloned.addClass("animated slideInLeft");
+break;
+case 2:
+case 3:
+cloned.addClass("animated slideInRight");
+break;
+}
+}
   $('#notesContainer').children('.row:last').append(cloned.show());
   console.log("added note titled: " + jsonIn['title']);
 numNotesDisplayed++;
@@ -119,6 +170,42 @@ numNotesDisplayed++;
 displayNote({'title':$('#newnotetitle').val(),'content':$('newnotecontent').val(),'id':msg});
   });
   }
+function showEditNote(note){
+note = $(note);
+console.log(note.parent());
+var editnote = $('#editmodal');
+$('#editnotetitle').val(note.parent().children('p.notetitle').text());
+$('#editnotecontent').val(note.parent().children('p.notecontent').text());
+$('#editnoteid').val(note.parent().parent().attr('id'))
+editnote.modal('show');
+}
+function editNote(){
+  $.ajax({
+  type: "POST",
+  url: "{{url_for('editNotes')}}",
+  data: { title: $('#editnotetitle').val(), content: $('#editnotecontent').val(), id:  $('#editnoteid').val() }
+  })
+  .done(function( msg ) {
+  console.log(msg);
+$($('#editnoteid')).children().children('p.notetitle').text($('#editnotetitle'));
+location.reload();
+  });
+}
+function deleteNote(){
+  $.ajax({
+  type: "POST",
+  url: "{{url_for('deleteNotes')}}",
+  data: { id:  $('#editnoteid').val() }
+  })
+  .done(function( msg ) {
+  console.log(msg);
+location.reload();
+  });
+
+}
+
+
+
   $(function(){
 
   });
