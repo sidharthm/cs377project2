@@ -6,7 +6,7 @@
 {% block body %}
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="navbar-header">
-		<a href="#" class="navbar-brand">Note-It</a>
+		<a href="{{url_for('welcome_page')}}" class="navbar-brand">Note-It</a>
 	</div>
 
 <button class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal">
@@ -14,7 +14,7 @@
 </button>
 
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Logout</a></li>
+            <li><a href="{{url_for('logout')}}">Logout</a></li>
 
         </ul>
 </nav>

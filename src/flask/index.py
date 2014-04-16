@@ -89,7 +89,8 @@ def login():
 def logout():
     session.pop('logged_in',None)
     flash('Logged out successfully')
-    return render_template('index.html')
+    return redirect(url_for('login'))
+#    return render_template('index.html')
 
 @app.route('/notes/new', methods=['GET','POST'])
 def newNotes():
