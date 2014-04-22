@@ -102,7 +102,7 @@ def newNotes():
     except:
         return 'Invalid request; missing fields'
     db=get_db()
-    error = db.execute('insert into notes (user_id,title,content,color) values(?,?,?,?)',[session['user_id'], request.form['title'], request.form['content'], 'yellow'])
+    error = db.execute('insert into notes (user_id,title,content,color) values(?,?,?,?)',[session['user_id'], request.form['title'], request.form['content'], 'white'])
     db.commit()
     if (len(error.fetchall()) is 0):
         curs = db.execute('select max(id) from notes')
@@ -117,10 +117,11 @@ def editNotes():
         request.form['title']
         request.form['content']
         request.form['id']
+        request.form['color']
     except:
         return 'Invalid request; missing fields'
     db=get_db()
-    error=db.execute('update notes set title=?, content=? where id=?',[request.form['title'],request.form['content'],request.form['id']])
+    error=db.execute('update notes set title=?, content=?, color=? where id=?',[request.form['title'],request.form['content'],request.form['color'],request.form['id']])
     db.commit()
     if (len(error.fetchall()) is 0):
         return str(request.form['id'])

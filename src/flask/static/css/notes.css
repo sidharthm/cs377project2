@@ -2,15 +2,31 @@ body{
 background-image:url('/static/img/bg.jpg');
 }
 .note{
-background-image:url('/static/img/btsgrid1.jpg');
+background-image:url('/static/img/btsgrid1.png');
 /*acity:.2;
 filter:alpha(opacity=20);*/
 height:400px;
 width:400px;
 margin-top:20px;
 padding: 1em .5em 1em .5em;
-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);}
+box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+}
+.blue{
+background-color:blue;
+}
+.red{
+background-color:red;
+}
+.white{
+}
+.green{
+background-color:green;
+}
+.lightblue{
+}
+.orange{
 
+}
 .notetitle, .notecontent{
 text-align:center
 }
