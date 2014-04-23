@@ -25,20 +25,20 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
-#@app.route('/debug')
-#def debug():
-#    #init_db()
-#    db = get_db()
-#    cur=db.execute('select * from users')
-#    entries = cur.fetchall()
-#   ret = ''
-#   for user in entries:
-#		#ret+=note['color']
-#		ret+=user['username']
-#		ret += "\n"
-#		ret += user['password']
-#		ret += "\n"
-#   return ret
+@app.route('/debug')
+def debug():
+    #init_db()
+    db = get_db()
+    cur=db.execute('select * from users')
+    entries = cur.fetchall()
+    ret = ''
+    for user in entries:
+		#ret+=note['color']
+		ret+=user['username']
+		ret += "\n"
+		ret += user['password']
+		ret += "\n"
+    return ret
 #    return pprint.pformat(entries)
 
 @app.route('/')
@@ -99,6 +99,7 @@ def newNotes():
     try:
         request.form['title']
         request.form['content']
+        #request.form['color']
     except:
         return 'Invalid request; missing fields'
     db=get_db()
