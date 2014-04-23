@@ -153,7 +153,7 @@ def notes():
     entries = cur.fetchall()
     jsonable = []
     for entry in entries:
-        jsonable.append( {'id': entry['id'],'title':entry['title'],'content':entry['content']})
+        jsonable.append( {'id': entry['id'],'title':entry['title'],'content':entry['content'],'color':entry['color']})
     #return pprint.pformat(jsonable)
     return render_template('notes.html', notes=jsonable)
 

@@ -75,11 +75,11 @@
         <textarea id="editnotecontent" class="form-control" placeholder="enter notes here" name="content" rows="4"></textarea>
       </div>
       <div class="modal-footer">
-<button type="button" class="btn btn-default">W</button>
-<button type="button" class="btn btn-danger">R</button>
-<button type="button" class="btn btn-primary">B</button>
-<button type="button" class="btn btn-info">LB</button>
-<button type="button" class="btn btn-warning">O</button>
+<button type="button" class="btn btn-default" onclick="editcolor='white';">W</button>
+<button type="button" class="btn btn-danger" onclick="editcolor='red';">R</button>
+<button type="button" class="btn btn-primary" onclick="editcolor='blue';">B</button>
+<button type="button" class="btn btn-info" onclick="editcolor='lightblue';">LB</button>
+<button type="button" class="btn btn-warning" onclick="editcolor='orange';">O</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editNote()">Edit</button>
       </div>
@@ -119,7 +119,8 @@ Done
   cloned.attr('id',id);
   cloned.children(".note").children('.nano-content').children("p.notetitle").text(title);
   cloned.children('.note').children('.nano-content').children('p.notecontent').text(content);
-  clone.children('.note').addClass(color);
+  cloned.children('.note').addClass(color);
+cloned.children('.note').attr('color',color);
   return cloned;
   }
 
@@ -186,10 +187,12 @@ numNotesDisplayed++;
 displayNote({'title':$('#newnotetitle').val(),'content': $('#newnotecontent').val(),'id':msg});
   });
   }
+var editcolor='';
  function showEditNote(note){
 note = $(note);
 console.log(note.parent());
 var editnote = $('#editmodal');
+editcolor = note.parent().parent().children('.note').attr('color');
 $('#editnotetitle').val(note.parent().children('p.notetitle').text());
 $('#editnotecontent').val(note.parent().children('p.notecontent').text());
 $('#editnoteid').val(note.parent().parent().parent().attr('id'))
@@ -199,7 +202,7 @@ function editNote(){
   $.ajax({
   type: "POST",
   url: "{{url_for('editNotes')}}",
-  data: { title: $('#editnotetitle').val(), content: $('#editnotecontent').val(), id:  $('#editnoteid').val() }
+  data: { title: $('#editnotetitle').val(), content: $('#editnotecontent').val(), id:  $('#editnoteid').val(), color: editcolor}
   })
   .done(function( msg ) {
   console.log(msg);
