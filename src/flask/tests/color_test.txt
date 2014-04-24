@@ -1,0 +1,29 @@
+*** Settings ***
+Library  Selenium2Library
+
+
+*** Keywords ***
+Open and Login
+  Open Browser  localhost:5000/login
+  Title Should Be  Note-It
+  Input Text  name=username  sid
+  Input Password  name=password  sid
+  Click Button  name=loginbutton
+Delete Created Note
+
+*** Test Cases ***
+Color Test
+  [Documentation]  This test ensures that a note's color can be changed
+  Open and Login
+  Click Button  name=newNote
+  Wait Until Element Is Visible  id=myModal
+  Input Text  id=newnotetitle  Sid
+  Input Text  name=content  Sid was here
+  Click Button  name=createButton
+  Wait Until Element Is Visible  name=testNoteName
+  Click Button  name=redButton
+  Click Button  name=editNote
+  Should Be Equal  'red'  Get Element Attribute  testNoteName@color
+  Click Element  name=testNoteName
+  Wait Until Element Is Visible  name=deleteTestNote
+  Click Button  name=deleteTestNote

@@ -9,7 +9,7 @@
 		<a href="{{url_for('welcome_page')}}" class="navbar-brand">Note-It</a>
 	</div>
 
-<button class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal">
+<button class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal" name="newNote">
   New Note
 </button>
 
@@ -45,7 +45,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="createNote()">Create</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="createNote()" name="createButton">Create</button>
       </div>
 
       </form>
@@ -62,7 +62,7 @@
       <form action="{{url_for('editNotes')}}" method="post" role="form">
 
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteNote()"><span class="glyphicon glyphicon-trash"></span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteNote()" name="deleteTestNote"><span class="glyphicon glyphicon-trash"></span></button>
         <h4 class="modal-title" id="myModalLabel">
 <div class="input-group">
 <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
@@ -76,7 +76,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editNote()">Edit</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editNote()" name="editNote">Edit</button>
       </div>
 
       </form>
@@ -113,6 +113,7 @@ Done
   var cloned = $('#notetemplate').clone(true,true);
   cloned.attr('id',id);
   cloned.children(".note").children('.nano-content').children("p.notetitle").text(title);
+  cloned.children(".note").children('.nano-content').children("p.notetitle").attr('name',"testNoteName");
   cloned.children('.note').children('.nano-content').children('p.notecontent').text(content);
   return cloned;
   }

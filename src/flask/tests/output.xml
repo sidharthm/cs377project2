@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20140424 03:27:17.183" generator="Robot 2.8.4 (Python 2.7.5+ on linux2)">
+<suite source="/home/sid/Documents/project2/src/flask/tests/color_test.txt" id="s1" name="Color Test">
+<test id="s1-t1" name="Color Test">
+<kw type="kw" name="Open and Login">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Open Browser">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>localhost:5000/login</arg>
+</arguments>
+<msg timestamp="20140424 03:27:17.299" level="INFO">Opening browser 'firefox' to base url 'localhost:5000/login'</msg>
+<status status="PASS" endtime="20140424 03:27:19.863" starttime="20140424 03:27:17.298"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>Note-It</arg>
+</arguments>
+<msg timestamp="20140424 03:27:19.870" level="INFO">Page title is 'Note-It'.</msg>
+<status status="PASS" endtime="20140424 03:27:19.870" starttime="20140424 03:27:19.864"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=username</arg>
+<arg>sid</arg>
+</arguments>
+<msg timestamp="20140424 03:27:19.871" level="INFO">Typing text 'sid' into text field 'name=username'</msg>
+<status status="PASS" endtime="20140424 03:27:20.176" starttime="20140424 03:27:19.870"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Password">
+<doc>Types the given password into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=password</arg>
+<arg>sid</arg>
+</arguments>
+<msg timestamp="20140424 03:27:20.177" level="INFO">Typing password into text field 'name=password'</msg>
+<status status="PASS" endtime="20140424 03:27:20.403" starttime="20140424 03:27:20.177"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>name=loginbutton</arg>
+</arguments>
+<msg timestamp="20140424 03:27:20.403" level="INFO">Clicking button 'name=loginbutton'.</msg>
+<status status="PASS" endtime="20140424 03:27:21.866" starttime="20140424 03:27:20.403"></status>
+</kw>
+<status status="PASS" endtime="20140424 03:27:21.866" starttime="20140424 03:27:17.298"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>name=newNote</arg>
+</arguments>
+<msg timestamp="20140424 03:27:21.866" level="INFO">Clicking button 'name=newNote'.</msg>
+<status status="PASS" endtime="20140424 03:27:22.905" starttime="20140424 03:27:21.866"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>id=myModal</arg>
+</arguments>
+<status status="PASS" endtime="20140424 03:27:23.156" starttime="20140424 03:27:22.905"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=newnotetitle</arg>
+<arg>Sid</arg>
+</arguments>
+<msg timestamp="20140424 03:27:23.157" level="INFO">Typing text 'Sid' into text field 'id=newnotetitle'</msg>
+<status status="PASS" endtime="20140424 03:27:23.410" starttime="20140424 03:27:23.157"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=content</arg>
+<arg>Sid was here</arg>
+</arguments>
+<msg timestamp="20140424 03:27:23.410" level="INFO">Typing text 'Sid was here' into text field 'name=content'</msg>
+<status status="PASS" endtime="20140424 03:27:23.849" starttime="20140424 03:27:23.410"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>name=createButton</arg>
+</arguments>
+<msg timestamp="20140424 03:27:23.850" level="INFO">Clicking button 'name=createButton'.</msg>
+<status status="PASS" endtime="20140424 03:27:25.447" starttime="20140424 03:27:23.850"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>name=testNoteName</arg>
+</arguments>
+<status status="PASS" endtime="20140424 03:27:25.482" starttime="20140424 03:27:25.450"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>name=redButton</arg>
+</arguments>
+<msg timestamp="20140424 03:27:25.482" level="INFO">Clicking button 'name=redButton'.</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20140424 03:27:26.090" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20140424 03:27:26.090" starttime="20140424 03:27:25.513"></status>
+</kw>
+<msg timestamp="20140424 03:27:26.091" level="FAIL">ValueError: Element locator 'name=redButton' did not match any elements.</msg>
+<status status="FAIL" endtime="20140424 03:27:26.091" starttime="20140424 03:27:25.482"></status>
+</kw>
+<doc>This test ensures that a note's color can be changed</doc>
+<tags>
+</tags>
+<status status="FAIL" endtime="20140424 03:27:26.092" critical="yes" starttime="20140424 03:27:17.297">ValueError: Element locator 'name=redButton' did not match any elements.</status>
+</test>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="FAIL" endtime="20140424 03:27:26.093" starttime="20140424 03:27:17.183"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="0">Critical Tests</stat>
+<stat fail="1" pass="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="1" pass="0" id="s1" name="Color Test">Color Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
