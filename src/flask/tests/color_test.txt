@@ -17,12 +17,17 @@ Color Test
   Open and Login
   Click Button  name=newNote
   Wait Until Element Is Visible  id=myModal
-  Input Text  id=newnotetitle  Sid
+  Wait Until Element Is Visible  id=newnotetitle
+  Input Text  name=title  Sidharth
   Input Text  name=content  Sid was here
   Click Button  name=createButton
   Wait Until Element Is Visible  name=testNoteName
-  Click Button  name=redButton
+  Sleep  5s
+  Click Element  name=testNoteName
+  Wait Until Element Is Visible  name=redbutton
+  Click Button  name=redbutton
   Click Button  name=editNote
+  Wait Until Element Is Visible  name=testNoteName
   Should Be Equal  'red'  Get Element Attribute  testNoteName@color
   Click Element  name=testNoteName
   Wait Until Element Is Visible  name=deleteTestNote
