@@ -1,13 +1,30 @@
 
 function cloneAndFillNote(title, content, id, color){
-
+    var img=[];
     var contentarray = content.split(' ');
+    for( var i =  0 ; i != contentarray.length; i++){
+	var word = contentarray[i].trim();
+	if(word.length <= 4){
+	    continue;
+	}
+//	console.log(word);
+	switch(	word.substring(word.length-4).toUpperCase().trim() ){
+	case '.PNG':
+	case '.JPG':
+	    img.push(word);
+	    break;
+	}
+    }
 
     var cloned = $('#notetemplate').clone(true,true);
     cloned.attr('id',id);
     cloned.children(".note").children('.nano-content').children("p.notetitle").text(title);
     cloned.children(".note").children('.nano-content').children("p.notetitle").attr('name',"testNoteName");
     cloned.children('.note').children('.nano-content').children('p.notecontent').text(content);
+
+    for(var i = 0 ; i != img.length; i++){
+	cloned.children('.note').children('.nano-content').append($("<img/>").attr('src',img[i]));
+							     }
     cloned.children('.note').addClass(color);
     cloned.children('.note').attr('color',color);
     return cloned;
