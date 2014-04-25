@@ -113,8 +113,10 @@
 {% block footer %}
 {{super()}}
 <script>
-
-                                function cloneAndFillNote(title, content, id, color){
+                                var notes = {{ notes | tojson }};
+                                var numNotesDisplayed = 0;
+                                console.log(notes);
+                                function cloneAndFillNote(title, content, id, color) {
                                 var cloned = $('#notetemplate').clone(true, true);
                                         cloned.attr('id', id);
                                         cloned.children(".note").children('.nano-content').children("p.notetitle").text(title);
@@ -125,32 +127,28 @@
                                         return cloned;
                                 }
 
-                        var notes = {{ notes | tojson }};
-                                var numNotesDisplayed = 0;
-                                console.log(notes);
-                                displayNotesArray(notes, 0);
-                                
-                                function displayNotesArray(notesIn, index){
-                                setTimeout(function(){
-                                if (index < notesIn.length){
+                        displayNotesArray(notes, 0);
+                                function displayNotesArray(notesIn, index) {
+                                setTimeout(function() {
+                                if (index < notesIn.length) {
                                 displayNote(notesIn[index]);
                                         displayNotesArray(notesIn, index + 1);
                                 }
                                 }, 150);
                                 }
 
-                        function displayNote(jsonIn){
+                        function displayNote(jsonIn) {
                         console.log(jsonIn);
-                                if (numNotesDisplayed % 4 == 0){
+                                if (numNotesDisplayed % 4 == 0) {
                         $('#notesContainer').append($("<div></div>").addClass("row"));
                         }
 
                         var cloned = cloneAndFillNote(jsonIn['title'], jsonIn['content'], jsonIn['id'], jsonIn['color']);
-                                if (numNotesDisplayed <= 4){
+                                if (numNotesDisplayed <= 4) {
                         console.log("add");
                                 cloned.addClass("animated slideInDown");
-                        } else{
-                        switch (numNotesDisplayed % 4){
+                        } else {
+                        switch (numNotesDisplayed % 4) {
                         case 0:
                                 case 1:
                                 cloned.addClass("animated slideInLeft");
@@ -167,21 +165,21 @@
                         }
                         }
 
-                        function createNote(){
+                        function createNote() {
 //console.log($('#newnotecontent').val());
                         $.ajax({
                         type: "POST",
                                 url: "{{url_for('newNotes')}}",
-                                data: { title: $('#newnotetitle').val(), content: $('#newnotecontent').val() }
+                                data: {title: $('#newnotetitle').val(), content: $('#newnotecontent').val()}
                         })
                                 .done(function(msg) {
                         console.log("New note created with ID: " + msg);
-                                displayNote({'title':$('#newnotetitle').val(), 'content': $('#newnotecontent').val(), 'id':msg});
+                                displayNote({'title': $('#newnotetitle').val(), 'content': $('#newnotecontent').val(), 'id': msg});
                         });
                         }
 
                         var editcolor = '';
-                                function showEditNote(note){
+                                function showEditNote(note) {
                                 note = $(note);
                                         console.log(note.parent());
                                         var editnote = $('#editmodal');
@@ -191,34 +189,34 @@
                                         $('#editnoteid').val(note.parent().parent().parent().attr('id'))
                                         editnote.modal('show');
                                 }
-                        function editNote(){
+                        function editNote() {
                         $.ajax({
                         type: "POST",
-            url: "{{url_for('editNotes')}}",
-            data: { title: $('#editnotetitle').val(), content: $('#editnotecontent').val(), id:  $('#editnoteid').val(), color: editcolor}
-    })
-            .done(function(msg) {
-    console.log(msg);
-            $($('#editnoteid')).children().children('p.notetitle').text($('#editnotetitle'));
-            location.reload();
-    });
-    }
-    function deleteNote(){
-    $.ajax({
-    type: "POST",
-            url: "{{url_for('deleteNotes')}}",
-            data: { id:  $('#editnoteid').val() }
-    })
-            .done(function(msg) {
-    console.log(msg);
-            location.reload();
-    });
-    }
+                                url: "{{url_for('editNotes')}}",
+                                data: {title: $('#editnotetitle').val(), content: $('#editnotecontent').val(), id: $('#editnoteid').val(), color: editcolor}
+                        })
+                                .done(function(msg) {
+                        console.log(msg);
+                                $($('#editnoteid')).children().children('p.notetitle').text($('#editnotetitle'));
+                                location.reload();
+                        });
+                        }
+                        function deleteNote() {
+                        $.ajax({
+                        type: "POST",
+                                url: "{{url_for('deleteNotes')}}",
+                                data: {id: $('#editnoteid').val()}
+                        })
+                                .done(function(msg) {
+                        console.log(msg);
+                                location.reload();
+                        });
+                        }
 
 
 
-    $(function(){
-    //$('.nano').nanoScroller( {} );
-    });
+                        $(function() {
+                        //$('.nano').nanoScroller( {} );
+                        });
 </script>
 {% endblock %}
