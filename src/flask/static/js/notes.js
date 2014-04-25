@@ -1,4 +1,3 @@
-
 function cloneAndFillNote(title, content, id, color){
     var img=[];
     var contentarray = content.split(' ');
@@ -15,7 +14,8 @@ function cloneAndFillNote(title, content, id, color){
 	    break;
 	}
     }
-
+//    var cv = new Showdown.converter();
+  //  content = cv.makeHtml(content);
     var cloned = $('#notetemplate').clone(true,true);
     cloned.attr('id',id);
     cloned.children(".note").children('.nano-content').children("p.notetitle").text(title);
