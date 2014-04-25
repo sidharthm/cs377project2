@@ -5,106 +5,106 @@
 {% endblock %}
 {% block body %}
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	<div class="navbar-header">
-		<a href="{{url_for('welcome_page')}}" class="navbar-brand">Note-It</a>
-	</div>
+    <div class="navbar-header">
+        <a href="{{url_for('welcome_page')}}" class="navbar-brand">Note-It</a>
+    </div>
 
-<button class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal" name="newNote">
-  New Note
-</button>
+    <button class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal" name="newNote">
+        New Note
+    </button>
 
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{url_for('logout')}}">Logout</a></li>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{url_for('logout')}}">Logout</a></li>
 
-        </ul>
+    </ul>
 </nav>
 
 <div class="container-fluid" id="notesContainer" style="margin-top:3em;margin-bottom:3em;">
- 
+
 </div>
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      
-      <form action="{{url_for('newNotes')}}" method="post" role="form">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">
-<div class="input-group">
-<span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-	<input id="newnotetitle" type="text" class="form-control" placeholder="Title" name="title"/>
-</div>
-	</h4>
-      </div>
+            <form action="{{url_for('newNotes')}}" method="post" role="form">
 
-      <div class="modal-body">
-        <textarea id="newnotecontent" class="form-control" placeholder="enter notes here" name="content" rows="4"></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="createNote()" name="createButton">Create</button>
-      </div>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                            <input id="newnotetitle" type="text" class="form-control" placeholder="Title" name="title"/>
+                        </div>
+                    </h4>
+                </div>
 
-      </form>
+                <div class="modal-body">
+                    <textarea id="newnotecontent" class="form-control" placeholder="enter notes here" name="content" rows="4"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="createNote()" name="createButton">Create</button>
+                </div>
 
+            </form>
+
+        </div>
     </div>
-  </div>
 </div>
 
 
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true" id="editmodal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      
-      <form action="{{url_for('editNotes')}}" method="post" role="form">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteNote()" name="deleteTestNote"><span class="glyphicon glyphicon-trash"></span></button>
-        <h4 class="modal-title" id="myModalLabel">
-<div class="input-group">
-<span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-	<input id="editnotetitle" type="text" class="form-control" placeholder="Title" name="title"/>
-</div>
-	</h4>
-      </div>
-      <input type="hidden" id="editnoteid" name="id"/>
-      <div class="modal-body">
-        <textarea id="editnotecontent" class="form-control" placeholder="enter notes here" name="content" rows="4"></textarea>
-      </div>
-      <div class="modal-footer">
-<button type="button" class="btn btn-default" onclick="editcolor='white';">W</button>
-<button type="button" class="btn btn-danger" onclick="editcolor='red';" name="redbutton">R</button>
-<button type="button" class="btn btn-primary" onclick="editcolor='blue';">B</button>
-<button type="button" class="btn btn-info" onclick="editcolor='lightblue';">LB</button>
-<button type="button" class="btn btn-warning" onclick="editcolor='orange';">O</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editNote()" name="editNote">Edit</button>
-      </div>
+            <form action="{{url_for('editNotes')}}" method="post" role="form">
 
-      </form>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="deleteNote()" name="deleteTestNote"><span class="glyphicon glyphicon-trash"></span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                            <input id="editnotetitle" type="text" class="form-control" placeholder="Title" name="title"/>
+                        </div>
+                    </h4>
+                </div>
+                <input type="hidden" id="editnoteid" name="id"/>
+                <div class="modal-body">
+                    <textarea id="editnotecontent" class="form-control" placeholder="enter notes here" name="content" rows="4"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="editcolor = 'white';">W</button>
+                    <button type="button" class="btn btn-danger" onclick="editcolor = 'red';" name="redbutton">R</button>
+                    <button type="button" class="btn btn-primary" onclick="editcolor = 'blue';">B</button>
+                    <button type="button" class="btn btn-info" onclick="editcolor = 'lightblue';">LB</button>
+                    <button type="button" class="btn btn-warning" onclick="editcolor = 'orange';">O</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editNote()" name="editNote">Edit</button>
+                </div>
 
+            </form>
+
+        </div>
     </div>
-  </div>
 </div>
 
 <div id="saving" style="position:absolute;top:50%;left:50%;font-size:2em;margin-left:-1em;display:none;">
-Saving...
+    Saving...
 </div>
 <div id="saving_done" style="position:absolute;top:50%;left:50%;font-size:2em;margin-left:-1em;display:none;">
-Done
+    Done
 </div>
 
 
 <div class="col-md-3" style="display:none;" id="notetemplate" >
-<div class="note nano">
-<div class="nano-content">
-<p class="notetitle" onclick="showEditNote(this)"></p>
-<p class="notecontent" onclick="showEditNote(this)"></p>
-</div>
-</div>
+    <div class="note nano">
+        <div class="nano-content">
+            <p class="notetitle" onclick="showEditNote(this)"></p>
+            <p class="notecontent" onclick="showEditNote(this)"></p>
+        </div>
+    </div>
 </div>
 
 
@@ -114,122 +114,111 @@ Done
 {{super()}}
 <script>
 
-  function cloneAndFillNote(title, content, id, color){
-  var cloned = $('#notetemplate').clone(true,true);
-  cloned.attr('id',id);
-  cloned.children(".note").children('.nano-content').children("p.notetitle").text(title);
-  cloned.children(".note").children('.nano-content').children("p.notetitle").attr('name',"testNoteName");
-  cloned.children('.note').children('.nano-content').children('p.notecontent').text(content);
-  cloned.children('.note').addClass(color);
-cloned.children('.note').attr('color',color);
-  return cloned;
-  }
+                                function cloneAndFillNote(title, content, id, color){
+                                var cloned = $('#notetemplate').clone(true, true);
+                                        cloned.attr('id', id);
+                                        cloned.children(".note").children('.nano-content').children("p.notetitle").text(title);
+                                        cloned.children(".note").children('.nano-content').children("p.notetitle").attr('name', "testNoteName");
+                                        cloned.children('.note').children('.nano-content').children('p.notecontent').text(content);
+                                        cloned.children('.note').addClass(color);
+                                        cloned.children('.note').attr('color', color);
+                                        return cloned;
+                                }
 
-  var notes = {{ notes|tojson }};
-var numNotesDisplayed = 0;
-  console.log(notes);
+                        var notes = {{ notes | tojson }};
+                                var numNotesDisplayed = 0;
+                                console.log(notes);
+                                displayNotesArray(notes, 0);
+                                
+                                function displayNotesArray(notesIn, index){
+                                setTimeout(function(){
+                                if (index < notesIn.length){
+                                displayNote(notesIn[index]);
+                                        displayNotesArray(notesIn, index + 1);
+                                }
+                                }, 150);
+                                }
 
-displayNotesArray(notes,0);
+                        function displayNote(jsonIn){
+                        console.log(jsonIn);
+                                if (numNotesDisplayed % 4 == 0){
+                        $('#notesContainer').append($("<div></div>").addClass("row"));
+                        }
 
-function displayNotesArray(notesIn, index){
-setTimeout(function(){
-if(index < notesIn.length){
-displayNote(notesIn[index]);
-displayNotesArray(notesIn,index+1);
-}
-},150);
-}  
+                        var cloned = cloneAndFillNote(jsonIn['title'], jsonIn['content'], jsonIn['id'], jsonIn['color']);
+                                if (numNotesDisplayed <= 4){
+                        console.log("add");
+                                cloned.addClass("animated slideInDown");
+                        } else{
+                        switch (numNotesDisplayed % 4){
+                        case 0:
+                                case 1:
+                                cloned.addClass("animated slideInLeft");
+                                break;
+                                case 2:
+                                case 3:
+                                cloned.addClass("animated slideInRight");
+                                break;
+                        }
 
-  var noteDirectives = {
-  '@id':'id',
-  'div.note':{
-  'p.notetitle':'title',
-  'center':{
-  'p': 'content'
-  }
-  }
-  }
-  function displayNote(jsonIn){
-console.log(jsonIn);
-if(numNotesDisplayed % 4 == 0){
-$('#notesContainer').append($("<div></div>").addClass("row"));
-}
+                        $('#notesContainer').children('.row:last').append(cloned.show());
+                                console.log("added note titled: " + jsonIn['title']);
+                                numNotesDisplayed++;
+                        }
+                        }
 
-var cloned=cloneAndFillNote(jsonIn['title'],jsonIn['content'],jsonIn['id'], jsonIn['color']);
-
-	   if(numNotesDisplayed <= 4){
-				   console.log("add");
-				   cloned.addClass("animated slideInDown");
-				   }else{
-				   switch(numNotesDisplayed % 4){
-				   case 0:
-				   case 1:
-				   cloned.addClass("animated slideInLeft");
-				   break;
-				   case 2:
-				   case 3:
-				   cloned.addClass("animated slideInRight");
-				   break;
-				   }
-				   
-  $('#notesContainer').children('.row:last').append(cloned.show());
-  console.log("added note titled: " + jsonIn['title']);
-numNotesDisplayed++;
-}
-
-  function createNote(){
+                        function createNote(){
 //console.log($('#newnotecontent').val());
-  $.ajax({
-  type: "POST",
-  url: "{{url_for('newNotes')}}",
-  data: { title: $('#newnotetitle').val(), content: $('#newnotecontent').val() }
-  })
-  .done(function( msg ) {
-  console.log("New note created with ID: " + msg);
-displayNote({'title':$('#newnotetitle').val(),'content': $('#newnotecontent').val(),'id':msg});
-  });
-  }
+                        $.ajax({
+                        type: "POST",
+                                url: "{{url_for('newNotes')}}",
+                                data: { title: $('#newnotetitle').val(), content: $('#newnotecontent').val() }
+                        })
+                                .done(function(msg) {
+                        console.log("New note created with ID: " + msg);
+                                displayNote({'title':$('#newnotetitle').val(), 'content': $('#newnotecontent').val(), 'id':msg});
+                        });
+                        }
 
-var editcolor='';
- function showEditNote(note){
-note = $(note);
-console.log(note.parent());
-var editnote = $('#editmodal');
-editcolor = note.parent().parent().children('.note').attr('color');
-$('#editnotetitle').val(note.parent().children('p.notetitle').text());
-$('#editnotecontent').val(note.parent().children('p.notecontent').text());
-$('#editnoteid').val(note.parent().parent().parent().attr('id'))
-editnote.modal('show');
-}
-function editNote(){
-  $.ajax({
-  type: "POST",
-  url: "{{url_for('editNotes')}}",
-  data: { title: $('#editnotetitle').val(), content: $('#editnotecontent').val(), id:  $('#editnoteid').val(), color: editcolor}
-  })
-  .done(function( msg ) {
-  console.log(msg);
-$($('#editnoteid')).children().children('p.notetitle').text($('#editnotetitle'));
-location.reload();
-  });
-}
-function deleteNote(){
-  $.ajax({
-  type: "POST",
-  url: "{{url_for('deleteNotes')}}",
-  data: { id:  $('#editnoteid').val() }
-  })
-  .done(function( msg ) {
-  console.log(msg);
-  location.reload();
-  });
-
-}
-
+                        var editcolor = '';
+                                function showEditNote(note){
+                                note = $(note);
+                                        console.log(note.parent());
+                                        var editnote = $('#editmodal');
+                                        editcolor = note.parent().parent().children('.note').attr('color');
+                                        $('#editnotetitle').val(note.parent().children('p.notetitle').text());
+                                        $('#editnotecontent').val(note.parent().children('p.notecontent').text());
+                                        $('#editnoteid').val(note.parent().parent().parent().attr('id'))
+                                        editnote.modal('show');
+                                }
+                        function editNote(){
+                        $.ajax({
+                        type: "POST",
+            url: "{{url_for('editNotes')}}",
+            data: { title: $('#editnotetitle').val(), content: $('#editnotecontent').val(), id:  $('#editnoteid').val(), color: editcolor}
+    })
+            .done(function(msg) {
+    console.log(msg);
+            $($('#editnoteid')).children().children('p.notetitle').text($('#editnotetitle'));
+            location.reload();
+    });
+    }
+    function deleteNote(){
+    $.ajax({
+    type: "POST",
+            url: "{{url_for('deleteNotes')}}",
+            data: { id:  $('#editnoteid').val() }
+    })
+            .done(function(msg) {
+    console.log(msg);
+            location.reload();
+    });
+    }
 
 
-  $(function(){
-  //$('.nano').nanoScroller( {} );
-  });
+
+    $(function(){
+    //$('.nano').nanoScroller( {} );
+    });
 </script>
 {% endblock %}
