@@ -1,5 +1,8 @@
 
 function cloneAndFillNote(title, content, id, color){
+
+    var contentarray = content.split(' ');
+
     var cloned = $('#notetemplate').clone(true,true);
     cloned.attr('id',id);
     cloned.children(".note").children('.nano-content').children("p.notetitle").text(title);
@@ -10,8 +13,6 @@ function cloneAndFillNote(title, content, id, color){
     return cloned;
 }
 
-
-
 function displayNotesArray(notesIn, index){
     setTimeout(function(){
 	if(index < notesIn.length){
@@ -21,22 +22,13 @@ function displayNotesArray(notesIn, index){
     },150);
 }
 
-var noteDirectives = {
-    '@id':'id',
-    'div.note':{
-	'p.notetitle':'title',
-	'center':{
-	    'p': 'content'
-	}
-    }
-}
 function displayNote(jsonIn){
     console.log(jsonIn);
     if(numNotesDisplayed % 4 == 0){
 	$('#notesContainer').append($("<div></div>").addClass("row"));
     }
     
-    var cloned=cloneAndFillNote(jsonIn['title'],jsonIn['content'],jsonIn['id'], jsonIn['color']);
+    var cloned=cloneAndFillNote(jsonIn['title'],jsonIn['content'],jsonIn['id'], jsonIn['color'],jsonIn['color']);
     
     if(numNotesDisplayed <= 4){
 	console.log("add");
@@ -58,7 +50,6 @@ function displayNote(jsonIn){
     numNotesDisplayed++;
 }
 function createNote(){
-    //console.log($('#newnotecontent').val());
     $.ajax({
 	type: "POST",
 	url: newNoteUrl,
@@ -66,21 +57,19 @@ function createNote(){
     })
 	.done(function( msg ) {
 	    console.log("New note created with ID: " + msg);
-	    displayNote({'title':$('#newnotetitle').val(),'content': $('#newnotecontent').val(),'id':msg});
+	    displayNote({'title':$('#newnotetitle').val(),'content': $('#newnotecontent').val(),'id':msg,'color':'white'});
 	});
 }
-var editcolor='';
 function showEditNote(note){
     note = $(note);
-    console.log(note.parent());
     var editnote = $('#editmodal');
-    editcolor = note.parent().parent().children('.note').attr('color');
+    editcolor = note.parent().parent().parent().children('.note').attr('color');
     $('#editnotetitle').val(note.parent().children('p.notetitle').text());
     $('#editnotecontent').val(note.parent().children('p.notecontent').text());
     $('#editnoteid').val(note.parent().parent().parent().attr('id'))
     editnote.modal('show');
 }
-function editNote(){
+function editNoted(){
     $.ajax({
 	type: "POST",
 	url: editNoteUrl,

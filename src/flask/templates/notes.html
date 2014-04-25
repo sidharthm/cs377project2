@@ -81,7 +81,7 @@
 <button type="button" class="btn btn-info" onclick="editcolor='lightblue';">LB</button>
 <button type="button" class="btn btn-warning" onclick="editcolor='orange';">O</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editNote()" name="editNote">Edit</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editNoted()" name="editNote">Edit</button>
       </div>
 
       </form>
@@ -113,14 +113,15 @@ Done
 {% block footer %}
 {{super()}}
 
-    <script src="{{ url_for('static', filename='js/notes.js') }}"></script>
+<script src="{{ url_for('static', filename='js/notes.js') }}"></script>
 <script>
   var notes = {{ notes|tojson }};
-var editNoteUrl="{{url_for('editNotes')}}";
-var deleteNoteUrl="{{url_for('deleteNotes')}}";
-var newNoteUrl = "{{url_for('newNotes')}}";
-var numNotesDisplayed = 0;
+  var editNoteUrl="{{url_for('editNotes')}}";
+  var deleteNoteUrl="{{url_for('deleteNotes')}}";
+  var newNoteUrl = "{{url_for('newNotes')}}";
+  var numNotesDisplayed = 0;
   console.log(notes);
-displayNotesArray(notes,0);
+  displayNotesArray(notes,0);
+  var editcolor='';
 </script>
 {% endblock %}
