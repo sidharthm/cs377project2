@@ -171,11 +171,12 @@ var cloned=cloneAndFillNote(jsonIn['title'],jsonIn['content'],jsonIn['id'], json
 				   cloned.addClass("animated slideInRight");
 				   break;
 				   }
-				   }
+				   
   $('#notesContainer').children('.row:last').append(cloned.show());
   console.log("added note titled: " + jsonIn['title']);
 numNotesDisplayed++;
 }
+
   function createNote(){
 //console.log($('#newnotecontent').val());
   $.ajax({
@@ -188,6 +189,7 @@ numNotesDisplayed++;
 displayNote({'title':$('#newnotetitle').val(),'content': $('#newnotecontent').val(),'id':msg});
   });
   }
+
 var editcolor='';
  function showEditNote(note){
 note = $(note);
