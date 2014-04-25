@@ -22,13 +22,15 @@ Color Test
   Input Text  name=content  Sid was here
   Click Button  name=createButton
   Wait Until Element Is Visible  name=testNoteName
-  Sleep  5s
+  Sleep  2s
   Click Element  name=testNoteName
   Wait Until Element Is Visible  name=redbutton
   Click Button  name=redbutton
   Click Button  name=editNote
   Wait Until Element Is Visible  name=testNoteName
-  Should Be Equal  'red'  Get Element Attribute  testNoteName@color
+  Page Should Contain Element  css=div.note.nano.red
   Click Element  name=testNoteName
   Wait Until Element Is Visible  name=deleteTestNote
+  Sleep  2s
   Click Button  name=deleteTestNote
+  [Teardown]  Close Browser
