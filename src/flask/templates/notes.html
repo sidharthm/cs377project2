@@ -131,14 +131,14 @@ var numNotesDisplayed = 0;
 
 displayNotesArray(notes,0);
 
-function displayNotesArray(notesIn, index){
-setTimeout(function(){
-if(index < notesIn.length){
-displayNote(notesIn[index]);
-displayNotesArray(notesIn,index+1);
-}
-},150);
-}  
+  function displayNotesArray(notesIn, index){
+    setTimeout(function(){
+      if(index < notesIn.length){
+         displayNote(notesIn[index]);
+         displayNotesArray(notesIn,index+1);
+      }
+    },150);
+  }
 
   var noteDirectives = {
   '@id':'id',
