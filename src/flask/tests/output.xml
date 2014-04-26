@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20140424 18:15:11.263" generator="Robot 2.8.4 (Python 2.7.5+ on linux2)">
+<robot generated="20140425 23:01:43.000" generator="Robot 2.8.4 (Python 2.7.5+ on linux2)">
 <suite source="/home/sid/Documents/project2/src/flask/tests/color_test.txt" id="s1" name="Color Test">
 <test id="s1-t1" name="Color Test">
 <kw type="kw" name="Open and Login">
@@ -11,16 +11,16 @@
 <arguments>
 <arg>localhost:5000/login</arg>
 </arguments>
-<msg timestamp="20140424 18:15:11.480" level="INFO">Opening browser 'firefox' to base url 'localhost:5000/login'</msg>
-<status status="PASS" endtime="20140424 18:15:15.617" starttime="20140424 18:15:11.479"></status>
+<msg timestamp="20140425 23:01:43.107" level="INFO">Opening browser 'firefox' to base url 'localhost:5000/login'</msg>
+<status status="PASS" endtime="20140425 23:01:46.257" starttime="20140425 23:01:43.107"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Title Should Be">
 <doc>Verifies that current page title equals `title`.</doc>
 <arguments>
 <arg>Note-It</arg>
 </arguments>
-<msg timestamp="20140424 18:15:15.636" level="INFO">Page title is 'Note-It'.</msg>
-<status status="PASS" endtime="20140424 18:15:15.636" starttime="20140424 18:15:15.618"></status>
+<msg timestamp="20140425 23:01:46.263" level="INFO">Page title is 'Note-It'.</msg>
+<status status="PASS" endtime="20140425 23:01:46.264" starttime="20140425 23:01:46.257"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Input Text">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -28,8 +28,8 @@
 <arg>name=username</arg>
 <arg>sid</arg>
 </arguments>
-<msg timestamp="20140424 18:15:15.637" level="INFO">Typing text 'sid' into text field 'name=username'</msg>
-<status status="PASS" endtime="20140424 18:15:16.040" starttime="20140424 18:15:15.637"></status>
+<msg timestamp="20140425 23:01:46.264" level="INFO">Typing text 'sid' into text field 'name=username'</msg>
+<status status="PASS" endtime="20140425 23:01:46.536" starttime="20140425 23:01:46.264"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Input Password">
 <doc>Types the given password into text field identified by `locator`.</doc>
@@ -37,40 +37,52 @@
 <arg>name=password</arg>
 <arg>sid</arg>
 </arguments>
-<msg timestamp="20140424 18:15:16.041" level="INFO">Typing password into text field 'name=password'</msg>
-<status status="PASS" endtime="20140424 18:15:16.325" starttime="20140424 18:15:16.041"></status>
+<msg timestamp="20140425 23:01:46.536" level="INFO">Typing password into text field 'name=password'</msg>
+<status status="PASS" endtime="20140425 23:01:46.759" starttime="20140425 23:01:46.536"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Click Button">
 <doc>Clicks a button identified by `locator`.</doc>
 <arguments>
 <arg>name=loginbutton</arg>
 </arguments>
-<msg timestamp="20140424 18:15:16.326" level="INFO">Clicking button 'name=loginbutton'.</msg>
-<status status="PASS" endtime="20140424 18:15:17.930" starttime="20140424 18:15:16.326"></status>
+<msg timestamp="20140425 23:01:46.759" level="INFO">Clicking button 'name=loginbutton'.</msg>
+<status status="PASS" endtime="20140425 23:01:48.074" starttime="20140425 23:01:46.759"></status>
 </kw>
-<status status="PASS" endtime="20140424 18:15:17.931" starttime="20140424 18:15:11.479"></status>
+<status status="PASS" endtime="20140425 23:01:48.074" starttime="20140425 23:01:43.107"></status>
 </kw>
+<kw type="kw" name="Create New Note">
+<doc></doc>
+<arguments>
+</arguments>
 <kw type="kw" name="Selenium2Library.Click Button">
 <doc>Clicks a button identified by `locator`.</doc>
 <arguments>
 <arg>name=newNote</arg>
 </arguments>
-<msg timestamp="20140424 18:15:17.932" level="INFO">Clicking button 'name=newNote'.</msg>
-<status status="PASS" endtime="20140424 18:15:19.510" starttime="20140424 18:15:17.932"></status>
+<msg timestamp="20140425 23:01:48.076" level="INFO">Clicking button 'name=newNote'.</msg>
+<status status="PASS" endtime="20140425 23:01:49.371" starttime="20140425 23:01:48.075"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
 <doc>Waits until element specified with `locator` is visible.</doc>
 <arguments>
 <arg>id=myModal</arg>
 </arguments>
-<status status="PASS" endtime="20140424 18:15:19.803" starttime="20140424 18:15:19.511"></status>
+<status status="PASS" endtime="20140425 23:01:49.609" starttime="20140425 23:01:49.371"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
 <doc>Waits until element specified with `locator` is visible.</doc>
 <arguments>
 <arg>id=newnotetitle</arg>
 </arguments>
-<status status="PASS" endtime="20140424 18:15:19.849" starttime="20140424 18:15:19.804"></status>
+<status status="PASS" endtime="20140425 23:01:49.649" starttime="20140425 23:01:49.610"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Sleep">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2s</arg>
+</arguments>
+<msg timestamp="20140425 23:01:51.650" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20140425 23:01:51.650" starttime="20140425 23:01:49.649"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Input Text">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -78,8 +90,8 @@
 <arg>name=title</arg>
 <arg>Sidharth</arg>
 </arguments>
-<msg timestamp="20140424 18:15:19.850" level="INFO">Typing text 'Sidharth' into text field 'name=title'</msg>
-<status status="PASS" endtime="20140424 18:15:20.338" starttime="20140424 18:15:19.850"></status>
+<msg timestamp="20140425 23:01:51.651" level="INFO">Typing text 'Sidharth' into text field 'name=title'</msg>
+<status status="PASS" endtime="20140425 23:01:52.019" starttime="20140425 23:01:51.651"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Input Text">
 <doc>Types the given `text` into text field identified by `locator`.</doc>
@@ -87,134 +99,393 @@
 <arg>name=content</arg>
 <arg>Sid was here</arg>
 </arguments>
-<msg timestamp="20140424 18:15:20.339" level="INFO">Typing text 'Sid was here' into text field 'name=content'</msg>
-<status status="PASS" endtime="20140424 18:15:21.074" starttime="20140424 18:15:20.338"></status>
+<msg timestamp="20140425 23:01:52.020" level="INFO">Typing text 'Sid was here' into text field 'name=content'</msg>
+<status status="PASS" endtime="20140425 23:01:52.487" starttime="20140425 23:01:52.019"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Click Button">
 <doc>Clicks a button identified by `locator`.</doc>
 <arguments>
 <arg>name=createButton</arg>
 </arguments>
-<msg timestamp="20140424 18:15:21.075" level="INFO">Clicking button 'name=createButton'.</msg>
-<status status="PASS" endtime="20140424 18:15:23.059" starttime="20140424 18:15:21.075"></status>
+<msg timestamp="20140425 23:01:52.487" level="INFO">Clicking button 'name=createButton'.</msg>
+<status status="PASS" endtime="20140425 23:01:54.147" starttime="20140425 23:01:52.487"></status>
+</kw>
+<status status="PASS" endtime="20140425 23:01:54.147" starttime="20140425 23:01:48.075"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
 <doc>Waits until element specified with `locator` is visible.</doc>
 <arguments>
 <arg>name=testNoteName</arg>
 </arguments>
-<status status="PASS" endtime="20140424 18:15:23.743" starttime="20140424 18:15:23.060"></status>
+<status status="PASS" endtime="20140425 23:01:55.017" starttime="20140425 23:01:54.148"></status>
 </kw>
 <kw type="kw" name="BuiltIn.Sleep">
 <doc>Pauses the test executed for the given time.</doc>
 <arguments>
 <arg>2s</arg>
 </arguments>
-<msg timestamp="20140424 18:15:25.745" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" endtime="20140424 18:15:25.745" starttime="20140424 18:15:23.744"></status>
+<msg timestamp="20140425 23:01:57.019" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20140425 23:01:57.019" starttime="20140425 23:01:55.018"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Click Element">
 <doc>Click element identified by `locator`.</doc>
 <arguments>
 <arg>name=testNoteName</arg>
 </arguments>
-<msg timestamp="20140424 18:15:25.746" level="INFO">Clicking element 'name=testNoteName'.</msg>
-<status status="PASS" endtime="20140424 18:15:27.747" starttime="20140424 18:15:25.746"></status>
+<msg timestamp="20140425 23:01:57.020" level="INFO">Clicking element 'name=testNoteName'.</msg>
+<status status="PASS" endtime="20140425 23:01:58.300" starttime="20140425 23:01:57.019"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
 <doc>Waits until element specified with `locator` is visible.</doc>
 <arguments>
 <arg>name=redbutton</arg>
 </arguments>
-<status status="PASS" endtime="20140424 18:15:27.810" starttime="20140424 18:15:27.748"></status>
+<status status="PASS" endtime="20140425 23:01:58.744" starttime="20140425 23:01:58.301"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Click Button">
 <doc>Clicks a button identified by `locator`.</doc>
 <arguments>
 <arg>name=redbutton</arg>
 </arguments>
-<msg timestamp="20140424 18:15:27.811" level="INFO">Clicking button 'name=redbutton'.</msg>
-<status status="PASS" endtime="20140424 18:15:28.906" starttime="20140424 18:15:27.811"></status>
+<msg timestamp="20140425 23:01:58.745" level="INFO">Clicking button 'name=redbutton'.</msg>
+<status status="PASS" endtime="20140425 23:01:59.589" starttime="20140425 23:01:58.745"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Click Button">
 <doc>Clicks a button identified by `locator`.</doc>
 <arguments>
 <arg>name=editNote</arg>
 </arguments>
-<msg timestamp="20140424 18:15:28.908" level="INFO">Clicking button 'name=editNote'.</msg>
-<status status="PASS" endtime="20140424 18:15:30.366" starttime="20140424 18:15:28.908"></status>
+<msg timestamp="20140425 23:01:59.589" level="INFO">Clicking button 'name=editNote'.</msg>
+<status status="PASS" endtime="20140425 23:02:00.515" starttime="20140425 23:01:59.589"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
 <doc>Waits until element specified with `locator` is visible.</doc>
 <arguments>
 <arg>name=testNoteName</arg>
 </arguments>
-<status status="PASS" endtime="20140424 18:15:31.533" starttime="20140424 18:15:30.367"></status>
+<status status="PASS" endtime="20140425 23:02:01.551" starttime="20140425 23:02:00.516"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Page Should Contain Element">
 <doc>Verifies element identified by `locator` is found on the current page.</doc>
 <arguments>
 <arg>css=div.note.nano.red</arg>
 </arguments>
-<msg timestamp="20140424 18:15:31.551" level="INFO">Current page contains element 'css=div.note.nano.red'.</msg>
-<status status="PASS" endtime="20140424 18:15:31.551" starttime="20140424 18:15:31.534"></status>
+<msg timestamp="20140425 23:02:01.562" level="INFO">Current page contains element 'css=div.note.nano.red'.</msg>
+<status status="PASS" endtime="20140425 23:02:01.562" starttime="20140425 23:02:01.552"></status>
 </kw>
-<kw type="kw" name="Selenium2Library.Click Element">
-<doc>Click element identified by `locator`.</doc>
+<kw type="kw" name="Delete Created Note">
+<doc></doc>
 <arguments>
-<arg>name=testNoteName</arg>
 </arguments>
-<msg timestamp="20140424 18:15:31.552" level="INFO">Clicking element 'name=testNoteName'.</msg>
-<status status="PASS" endtime="20140424 18:15:33.264" starttime="20140424 18:15:31.551"></status>
-</kw>
 <kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
 <doc>Waits until element specified with `locator` is visible.</doc>
 <arguments>
-<arg>name=deleteTestNote</arg>
+<arg>name=testNoteName</arg>
 </arguments>
-<status status="PASS" endtime="20140424 18:15:33.399" starttime="20140424 18:15:33.265"></status>
+<status status="PASS" endtime="20140425 23:02:01.582" starttime="20140425 23:02:01.563"></status>
 </kw>
 <kw type="kw" name="BuiltIn.Sleep">
 <doc>Pauses the test executed for the given time.</doc>
 <arguments>
 <arg>2s</arg>
 </arguments>
-<msg timestamp="20140424 18:15:35.402" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" endtime="20140424 18:15:35.402" starttime="20140424 18:15:33.400"></status>
+<msg timestamp="20140425 23:02:03.583" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20140425 23:02:03.583" starttime="20140425 23:02:01.582"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>name=testNoteName</arg>
+</arguments>
+<msg timestamp="20140425 23:02:03.584" level="INFO">Clicking element 'name=testNoteName'.</msg>
+<status status="PASS" endtime="20140425 23:02:04.877" starttime="20140425 23:02:03.584"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>name=deleteTestNote</arg>
+</arguments>
+<status status="PASS" endtime="20140425 23:02:05.230" starttime="20140425 23:02:04.878"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Sleep">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2s</arg>
+</arguments>
+<msg timestamp="20140425 23:02:07.231" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20140425 23:02:07.231" starttime="20140425 23:02:05.230"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Click Button">
 <doc>Clicks a button identified by `locator`.</doc>
 <arguments>
 <arg>name=deleteTestNote</arg>
 </arguments>
-<msg timestamp="20140424 18:15:35.404" level="INFO">Clicking button 'name=deleteTestNote'.</msg>
-<status status="PASS" endtime="20140424 18:15:37.293" starttime="20140424 18:15:35.403"></status>
+<msg timestamp="20140425 23:02:07.232" level="INFO">Clicking button 'name=deleteTestNote'.</msg>
+<status status="PASS" endtime="20140425 23:02:08.947" starttime="20140425 23:02:07.231"></status>
+</kw>
+<status status="PASS" endtime="20140425 23:02:08.948" starttime="20140425 23:02:01.562"></status>
 </kw>
 <kw type="teardown" name="Selenium2Library.Close Browser">
 <doc>Closes the current browser.</doc>
 <arguments>
 </arguments>
-<status status="PASS" endtime="20140424 18:15:37.530" starttime="20140424 18:15:37.294"></status>
+<status status="PASS" endtime="20140425 23:02:08.986" starttime="20140425 23:02:08.948"></status>
 </kw>
 <doc>This test ensures that a note's color can be changed</doc>
 <tags>
 </tags>
-<status status="PASS" endtime="20140424 18:15:37.531" critical="yes" starttime="20140424 18:15:11.478"></status>
+<status status="PASS" endtime="20140425 23:02:08.992" critical="yes" starttime="20140425 23:01:43.106"></status>
+</test>
+<test id="s1-t2" name="Image Test">
+<kw type="kw" name="Open and Login">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Open Browser">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>localhost:5000/login</arg>
+</arguments>
+<msg timestamp="20140425 23:02:08.995" level="INFO">Opening browser 'firefox' to base url 'localhost:5000/login'</msg>
+<status status="PASS" endtime="20140425 23:02:11.301" starttime="20140425 23:02:08.995"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Title Should Be">
+<doc>Verifies that current page title equals `title`.</doc>
+<arguments>
+<arg>Note-It</arg>
+</arguments>
+<msg timestamp="20140425 23:02:11.308" level="INFO">Page title is 'Note-It'.</msg>
+<status status="PASS" endtime="20140425 23:02:11.308" starttime="20140425 23:02:11.301"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=username</arg>
+<arg>sid</arg>
+</arguments>
+<msg timestamp="20140425 23:02:11.309" level="INFO">Typing text 'sid' into text field 'name=username'</msg>
+<status status="PASS" endtime="20140425 23:02:11.592" starttime="20140425 23:02:11.308"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Password">
+<doc>Types the given password into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=password</arg>
+<arg>sid</arg>
+</arguments>
+<msg timestamp="20140425 23:02:11.592" level="INFO">Typing password into text field 'name=password'</msg>
+<status status="PASS" endtime="20140425 23:02:11.811" starttime="20140425 23:02:11.592"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>name=loginbutton</arg>
+</arguments>
+<msg timestamp="20140425 23:02:11.812" level="INFO">Clicking button 'name=loginbutton'.</msg>
+<status status="PASS" endtime="20140425 23:02:13.172" starttime="20140425 23:02:11.812"></status>
+</kw>
+<status status="PASS" endtime="20140425 23:02:13.173" starttime="20140425 23:02:08.994"></status>
+</kw>
+<kw type="kw" name="Create New Note">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>name=newNote</arg>
+</arguments>
+<msg timestamp="20140425 23:02:13.174" level="INFO">Clicking button 'name=newNote'.</msg>
+<status status="PASS" endtime="20140425 23:02:14.449" starttime="20140425 23:02:13.174"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>id=myModal</arg>
+</arguments>
+<status status="PASS" endtime="20140425 23:02:14.694" starttime="20140425 23:02:14.449"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>id=newnotetitle</arg>
+</arguments>
+<status status="PASS" endtime="20140425 23:02:14.721" starttime="20140425 23:02:14.695"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Sleep">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2s</arg>
+</arguments>
+<msg timestamp="20140425 23:02:16.723" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20140425 23:02:16.723" starttime="20140425 23:02:14.721"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=title</arg>
+<arg>Sidharth</arg>
+</arguments>
+<msg timestamp="20140425 23:02:16.724" level="INFO">Typing text 'Sidharth' into text field 'name=title'</msg>
+<status status="PASS" endtime="20140425 23:02:17.112" starttime="20140425 23:02:16.724"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=content</arg>
+<arg>Sid was here</arg>
+</arguments>
+<msg timestamp="20140425 23:02:17.113" level="INFO">Typing text 'Sid was here' into text field 'name=content'</msg>
+<status status="PASS" endtime="20140425 23:02:17.569" starttime="20140425 23:02:17.113"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>name=createButton</arg>
+</arguments>
+<msg timestamp="20140425 23:02:17.570" level="INFO">Clicking button 'name=createButton'.</msg>
+<status status="PASS" endtime="20140425 23:02:19.195" starttime="20140425 23:02:17.570"></status>
+</kw>
+<status status="PASS" endtime="20140425 23:02:19.196" starttime="20140425 23:02:13.173"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>name=testNoteName</arg>
+</arguments>
+<status status="PASS" endtime="20140425 23:02:20.013" starttime="20140425 23:02:19.196"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Sleep">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2s</arg>
+</arguments>
+<msg timestamp="20140425 23:02:22.018" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20140425 23:02:22.018" starttime="20140425 23:02:20.017"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>name=testNoteName</arg>
+</arguments>
+<msg timestamp="20140425 23:02:22.019" level="INFO">Clicking element 'name=testNoteName'.</msg>
+<status status="PASS" endtime="20140425 23:02:23.292" starttime="20140425 23:02:22.019"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>name=redbutton</arg>
+</arguments>
+<status status="PASS" endtime="20140425 23:02:23.747" starttime="20140425 23:02:23.293"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=editnotecontent</arg>
+<arg>http://img3.wikia.nocookie.net/__cb20110112054016/batman/images/2/28/BatsuitBW.jpg</arg>
+</arguments>
+<msg timestamp="20140425 23:02:23.747" level="INFO">Typing text 'http://img3.wikia.nocookie.net/__cb20110112054016/batman/images/2/28/BatsuitBW.jpg' into text field 'id=editnotecontent'</msg>
+<status status="PASS" endtime="20140425 23:02:25.941" starttime="20140425 23:02:23.747"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>name=editNote</arg>
+</arguments>
+<msg timestamp="20140425 23:02:25.942" level="INFO">Clicking button 'name=editNote'.</msg>
+<status status="PASS" endtime="20140425 23:02:27.644" starttime="20140425 23:02:25.941"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>name=testNoteName</arg>
+</arguments>
+<status status="PASS" endtime="20140425 23:02:28.752" starttime="20140425 23:02:27.645"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Page Should Contain Image">
+<doc>Verifies image identified by `locator` is found from current page.</doc>
+<arguments>
+<arg>http://img3.wikia.nocookie.net/__cb20110112054016/batman/images/2/28/BatsuitBW.jpg</arg>
+</arguments>
+<msg timestamp="20140425 23:02:28.769" level="INFO">Current page contains image 'http://img3.wikia.nocookie.net/__cb20110112054016/batman/images/2/28/BatsuitBW.jpg'.</msg>
+<status status="PASS" endtime="20140425 23:02:28.769" starttime="20140425 23:02:28.753"></status>
+</kw>
+<kw type="kw" name="Delete Created Note">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>name=testNoteName</arg>
+</arguments>
+<status status="PASS" endtime="20140425 23:02:28.788" starttime="20140425 23:02:28.769"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Sleep">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2s</arg>
+</arguments>
+<msg timestamp="20140425 23:02:30.789" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20140425 23:02:30.789" starttime="20140425 23:02:28.788"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>name=testNoteName</arg>
+</arguments>
+<msg timestamp="20140425 23:02:30.790" level="INFO">Clicking element 'name=testNoteName'.</msg>
+<status status="PASS" endtime="20140425 23:02:32.111" starttime="20140425 23:02:30.789"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>name=deleteTestNote</arg>
+</arguments>
+<status status="PASS" endtime="20140425 23:02:32.580" starttime="20140425 23:02:32.112"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Sleep">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2s</arg>
+</arguments>
+<msg timestamp="20140425 23:02:34.582" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20140425 23:02:34.583" starttime="20140425 23:02:32.580"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>name=deleteTestNote</arg>
+</arguments>
+<msg timestamp="20140425 23:02:34.583" level="INFO">Clicking button 'name=deleteTestNote'.</msg>
+<status status="PASS" endtime="20140425 23:02:36.247" starttime="20140425 23:02:34.583"></status>
+</kw>
+<status status="PASS" endtime="20140425 23:02:36.247" starttime="20140425 23:02:28.769"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<status status="PASS" endtime="20140425 23:02:36.291" starttime="20140425 23:02:36.248"></status>
+</kw>
+<doc>This test ensures that images can be added to notes</doc>
+<tags>
+</tags>
+<status status="PASS" endtime="20140425 23:02:36.297" critical="yes" starttime="20140425 23:02:08.993"></status>
 </test>
 <doc></doc>
 <metadata>
 </metadata>
-<status status="PASS" endtime="20140424 18:15:37.534" starttime="20140424 18:15:11.263"></status>
+<status status="PASS" endtime="20140425 23:02:36.300" starttime="20140425 23:01:43.000"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="0" pass="1">Critical Tests</stat>
-<stat fail="0" pass="1">All Tests</stat>
+<stat fail="0" pass="2">Critical Tests</stat>
+<stat fail="0" pass="2">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat fail="0" pass="1" id="s1" name="Color Test">Color Test</stat>
+<stat fail="0" pass="2" id="s1" name="Color Test">Color Test</stat>
 </suite>
 </statistics>
 <errors>

@@ -1,6 +1,6 @@
 *** Settings ***
 Library  Selenium2Library
-
+Test Teardown  CloseBrowser
 
 *** Keywords ***
 Open and Login
@@ -9,18 +9,27 @@ Open and Login
   Input Text  name=username  sid
   Input Password  name=password  sid
   Click Button  name=loginbutton
+Create New Note
+  Click Button  name=newNote
+  Wait Until Element Is Visible  id=myModal
+  Wait Until Element Is Visible  id=newnotetitle
+  Sleep  2s
+  Input Text  name=title  Sidharth
+  Input Text  name=content  Sid was here
+  Click Button  name=createButton
 Delete Created Note
+  Wait Until Element Is Visible  name=testNoteName
+  Sleep  2s
+  Click Element  name=testNoteName
+  Wait Until Element Is Visible  name=deleteTestNote
+  Sleep  2s
+  Click Button  name=deleteTestNote
 
 *** Test Cases ***
 Color Test
   [Documentation]  This test ensures that a note's color can be changed
   Open and Login
-  Click Button  name=newNote
-  Wait Until Element Is Visible  id=myModal
-  Wait Until Element Is Visible  id=newnotetitle
-  Input Text  name=title  Sidharth
-  Input Text  name=content  Sid was here
-  Click Button  name=createButton
+  Create New Note
   Wait Until Element Is Visible  name=testNoteName
   Sleep  2s
   Click Element  name=testNoteName
@@ -29,8 +38,17 @@ Color Test
   Click Button  name=editNote
   Wait Until Element Is Visible  name=testNoteName
   Page Should Contain Element  css=div.note.nano.red
-  Click Element  name=testNoteName
-  Wait Until Element Is Visible  name=deleteTestNote
+  Delete Created Note
+Image Test
+  [Documentation]  This test ensures that images can be added to notes 
+  Open and Login
+  Create New Note
+  Wait Until Element Is Visible  name=testNoteName
   Sleep  2s
-  Click Button  name=deleteTestNote
-  [Teardown]  Close Browser
+  Click Element  name=testNoteName
+  Wait Until Element Is Visible  name=redbutton
+  Input Text  id=editnotecontent  http://img3.wikia.nocookie.net/__cb20110112054016/batman/images/2/28/BatsuitBW.jpg
+  Click Button  name=editNote
+  Wait Until Element is Visible  name=testNoteName
+  Page Should Contain Image  http://img3.wikia.nocookie.net/__cb20110112054016/batman/images/2/28/BatsuitBW.jpg
+  Delete Created Note
