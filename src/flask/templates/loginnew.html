@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
               <button class="btn btn-primary btn-lg btn-block" name="loginbutton">Sign In</button>
-              <span class="pull-right"><a href="{{url_for('welcome_page')}}">Register</a></span><span><a href="{{url_for('help')}}">Need help?</a></span>
+              <span class="pull-right"><a href="{{url_for('welcome_page')}}">Register</a></span><span><a href="{{url_for('help')}}" name="help">Need help?</a></span>
 <div style="color:red">
   {% for message in get_flashed_messages() %}
     <div class=flash style="color:red; text-align:center;">{{ message }}</div>

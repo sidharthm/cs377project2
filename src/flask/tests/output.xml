@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20140425 23:22:19.826" generator="Robot 2.8.4 (Python 2.7.5+ on linux2)">
+<robot generated="20140425 23:27:20.938" generator="Robot 2.8.4 (Python 2.7.5+ on linux2)">
 <suite source="/home/sid/Documents/project2/src/flask/tests/retrieve_login.txt" id="s1" name="Retrieve Login">
 <test id="s1-t1" name="Login Retrieval Test">
 <kw type="kw" name="Selenium2Library.Open Browser">
@@ -7,50 +7,76 @@
 <arguments>
 <arg>localhost:5000/login</arg>
 </arguments>
-<msg timestamp="20140425 23:22:19.933" level="INFO">Opening browser 'firefox' to base url 'localhost:5000/login'</msg>
-<status status="PASS" endtime="20140425 23:22:22.442" starttime="20140425 23:22:19.933"></status>
+<msg timestamp="20140425 23:27:21.054" level="INFO">Opening browser 'firefox' to base url 'localhost:5000/login'</msg>
+<status status="PASS" endtime="20140425 23:27:23.417" starttime="20140425 23:27:21.054"></status>
 </kw>
 <kw type="kw" name="Selenium2Library.Click Link">
 <doc>Clicks a link identified by locator.</doc>
 <arguments>
 <arg>name=help</arg>
 </arguments>
-<msg timestamp="20140425 23:22:22.445" level="INFO">Clicking link 'name=help'.</msg>
-<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
-<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<arguments>
-</arguments>
-<msg timestamp="20140425 23:22:22.559" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" endtime="20140425 23:22:22.559" starttime="20140425 23:22:22.462"></status>
+<msg timestamp="20140425 23:27:23.418" level="INFO">Clicking link 'name=help'.</msg>
+<status status="PASS" endtime="20140425 23:27:24.546" starttime="20140425 23:27:23.417"></status>
 </kw>
-<msg timestamp="20140425 23:22:22.560" level="FAIL">ValueError: Element locator 'name=help' did not match any elements.</msg>
-<status status="FAIL" endtime="20140425 23:22:22.560" starttime="20140425 23:22:22.444"></status>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=username</arg>
+<arg>sid</arg>
+</arguments>
+<msg timestamp="20140425 23:27:24.547" level="INFO">Typing text 'sid' into text field 'name=username'</msg>
+<status status="PASS" endtime="20140425 23:27:24.837" starttime="20140425 23:27:24.546"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>name=email</arg>
+<arg>sid@sid.com</arg>
+</arguments>
+<msg timestamp="20140425 23:27:24.837" level="INFO">Typing text 'sid@sid.com' into text field 'name=email'</msg>
+<status status="PASS" endtime="20140425 23:27:25.263" starttime="20140425 23:27:24.837"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Button">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>name=loginbutton</arg>
+</arguments>
+<msg timestamp="20140425 23:27:25.263" level="INFO">Clicking button 'name=loginbutton'.</msg>
+<status status="PASS" endtime="20140425 23:27:25.940" starttime="20140425 23:27:25.263"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Page Should Contain Element">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>name=newNote</arg>
+</arguments>
+<msg timestamp="20140425 23:27:26.152" level="INFO">Current page contains element 'name=newNote'.</msg>
+<status status="PASS" endtime="20140425 23:27:26.152" starttime="20140425 23:27:25.940"></status>
 </kw>
 <kw type="teardown" name="Selenium2Library.Close Browser">
 <doc>Closes the current browser.</doc>
 <arguments>
 </arguments>
-<status status="PASS" endtime="20140425 23:22:22.587" starttime="20140425 23:22:22.560"></status>
+<status status="PASS" endtime="20140425 23:27:26.190" starttime="20140425 23:27:26.153"></status>
 </kw>
 <doc></doc>
 <tags>
 </tags>
-<status status="FAIL" endtime="20140425 23:22:22.591" critical="yes" starttime="20140425 23:22:19.932">ValueError: Element locator 'name=help' did not match any elements.</status>
+<status status="PASS" endtime="20140425 23:27:26.199" critical="yes" starttime="20140425 23:27:21.053"></status>
 </test>
 <doc></doc>
 <metadata>
 </metadata>
-<status status="FAIL" endtime="20140425 23:22:22.593" starttime="20140425 23:22:19.827"></status>
+<status status="PASS" endtime="20140425 23:27:26.199" starttime="20140425 23:27:20.938"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="1" pass="0">Critical Tests</stat>
-<stat fail="1" pass="0">All Tests</stat>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat fail="1" pass="0" id="s1" name="Retrieve Login">Retrieve Login</stat>
+<stat fail="0" pass="1" id="s1" name="Retrieve Login">Retrieve Login</stat>
 </suite>
 </statistics>
 <errors>

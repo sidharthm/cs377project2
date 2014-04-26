@@ -1,0 +1,35 @@
+*** Settings ***
+Library  Selenium2Library
+Test Teardown  CloseBrowser
+
+*** Keywords ***
+Open and Login
+  Open Browser  localhost:5000/login
+  Title Should Be  Note-It
+  Input Text  name=username  sid
+  Input Password  name=password  sid
+  Click Button  name=loginbutton
+Create New Note
+  Click Button  name=newNote
+  Wait Until Element Is Visible  id=myModal
+  Wait Until Element Is Visible  id=newnotetitle
+  Sleep  2s
+  Input Text  name=title  Sidharth
+  Input Text  name=content  Sid was here
+  Click Button  name=createButton
+Delete Created Note
+  Wait Until Element Is Visible  name=testNoteName
+  Sleep  2s
+  Click Element  name=testNoteName
+  Wait Until Element Is Visible  name=deleteTestNote
+  Sleep  2s
+  Click Button  name=deleteTestNote
+
+*** Test Cases ***
+Login Retrieval Test
+  Open Browser  localhost:5000/login
+  Click Link  name=help
+  Input Text  name=username  sid
+  Input Text  name=email  sid@sid.com
+  Click Button  name=loginbutton
+  Page Should Contain Element  name=newNote

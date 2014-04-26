@@ -173,7 +173,7 @@ def alt_login():
 		entries = cur.fetchall()
 		if len(entries) is 0:
 			flash('Invalid username/email combination')
-			return render_template('loginnew.html')
+			return render_template('help.html')
 		else:
 			session['user_id']=entries[0]['id']
 			session['logged_in']=True
