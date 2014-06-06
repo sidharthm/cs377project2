@@ -45,3 +45,6 @@ csci377-spring2014-project2
 - Software to keep notes.
 - Allow quick and easy entry of notes.
 - Attractive display and visualization. 
+
+## Product Hosting ##
+Product can be found at the following URL: http://quiet-chamber-4178.herokuapp.com/
